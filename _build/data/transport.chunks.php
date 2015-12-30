@@ -3,14 +3,14 @@
 $chunks = array();
 
 $tmp = array(
-	'tpl.Organizations.item' => array(
+	/* 'tpl.Organizations.item' => array(
 		'file' => 'item',
 		'description' => '',
 	),
 	'tpl.Organizations.office' => array(
 		'file' => 'office',
 		'description' => '',
-	),
+	), */
 );
 
 // Save chunks for setup options
