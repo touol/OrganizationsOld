@@ -5,11 +5,19 @@ $_lang['organizations'] = 'Organizations';
 $_lang['organizations_menu_desc'] = 'Пример расширения для разработки.';
 $_lang['organizations_intro_msg'] = 'Вы можете выделять сразу несколько предметов при помощи Shift или Ctrl.';
 
-$_lang['organizations_items'] = 'Предметы';
-$_lang['organizations_item_id'] = 'Id';
-$_lang['organizations_item_name'] = 'Название';
-$_lang['organizations_item_description'] = 'Описание';
+$_lang['organizations_setting'] = 'Настройки';
+
+$_lang['organizations_orgs'] = 'Организации';
+$_lang['organizations_fields_id'] = 'Id';
+$_lang['organizations_fields_name'] = 'Имя поля';
+$_lang['organizations_fields_label'] = 'Подпись';
+$_lang['organizations_fields_rank'] = 'Позиция';
 $_lang['organizations_item_active'] = 'Активно';
+
+$_lang['organizations_grid_shortname'] = 'Имя организации';
+$_lang['organizations_grid_inn'] = 'ИНН';
+$_lang['organizations_grid_kpp'] = 'КПП';
+
 
 $_lang['organizations_item_create'] = 'Создать предмет';
 $_lang['organizations_item_update'] = 'Изменить Предмет';

@@ -1,8 +1,11 @@
-Organizations.grid.Items = function (config) {
+
+
+Organizations.grid.Orgs = function (config) {
 	config = config || {};
 	if (!config.id) {
-		config.id = 'organizations-grid-items';
+		config.id = 'organizations-grid-orgs';
 	}
+	
 	Ext.applyIf(config, {
 		url: Organizations.config.connector_url,
 		fields: this.getFields(config),
@@ -10,12 +13,12 @@ Organizations.grid.Items = function (config) {
 		tbar: this.getTopBar(config),
 		sm: new Ext.grid.CheckboxSelectionModel(),
 		baseParams: {
-			action: 'mgr/item/getlist'
+			action: 'mgr/orgs/getlist'
 		},
 		listeners: {
 			rowDblClick: function (grid, rowIndex, e) {
 				var row = grid.store.getAt(rowIndex);
-				this.updateItem(grid, e, row);
+				this.updateOrg(grid, e, row);
 			}
 		},
 		viewConfig: {
@@ -34,7 +37,7 @@ Organizations.grid.Items = function (config) {
 		remoteSort: true,
 		autoHeight: true,
 	});
-	Organizations.grid.Items.superclass.constructor.call(this, config);
+	Organizations.grid.Orgs.superclass.constructor.call(this, config);
 
 	// Clear selection on grid refresh
 	this.store.on('load', function () {
@@ -43,7 +46,7 @@ Organizations.grid.Items = function (config) {
 		}
 	}, this);
 };
-Ext.extend(Organizations.grid.Items, MODx.grid.Grid, {
+Ext.extend(Organizations.grid.Orgs, MODx.grid.Grid, {
 	windows: {},
 
 	getMenu: function (grid, rowIndex) {
@@ -55,24 +58,58 @@ Ext.extend(Organizations.grid.Items, MODx.grid.Grid, {
 		this.addContextMenuItem(menu);
 	},
 
-	createItem: function (btn, e) {
-		var w = MODx.load({
-			xtype: 'organizations-item-window-create',
-			id: Ext.id(),
-			listeners: {
-				success: {
-					fn: function () {
-						this.refresh();
-					}, scope: this
-				}
-			}
-		});
-		w.reset();
-		w.setValues({active: true});
-		w.show(e.target);
+	createOrg: function (btn, e) {
+		Ext.Ajax.request({
+					async: false,
+					url: Organizations.config.connector_url,
+					params: {
+						action: 'mgr/orgs/getfields'
+					},
+					success: function(response, opts){
+						var fields = [];
+						var col1 = [];
+						var col2 = [];
+						var col3 = [];
+						org_fields = JSON.parse(response.responseText);
+						console.info('org_fields',org_fields);
+						console.info('Organizations.config',Organizations.config);
+						for (var z = 0; z < org_fields.length; z++){
+							var field = {};
+							if(org_fields[z]['active']){
+								field.xtype =org_fields[z]['xtype'];
+								field.fieldLabel = org_fields[z]['label'];
+								field.name = org_fields[z]['name'];
+								field.id = Ext.id();
+								field.anchor = '99%';
+								if(field.name == 'shortname'){
+									field.allowBlank = false;
+								}
+							}
+							fields.push(field);
+							
+						}
+						console.info('fields',fields);
+						Organizations.config.org_fields = fields;
+						var w = MODx.load({
+							xtype: 'organizations-orgs-window-create',
+							id: Ext.id(),
+							listeners: {
+								success: {
+									fn: function () {
+										this.refresh();
+									}, scope: this
+								}
+							}
+						});
+						w.reset();
+						w.setValues({active: true});
+						w.show(e.target);
+					},
+				});
+		
 	},
 
-	updateItem: function (btn, e, row) {
+	updateOrg: function (btn, e, row) {
 		if (typeof(row) != 'undefined') {
 			this.menu.record = row.data;
 		}
@@ -84,14 +121,14 @@ Ext.extend(Organizations.grid.Items, MODx.grid.Grid, {
 		MODx.Ajax.request({
 			url: this.config.url,
 			params: {
-				action: 'mgr/item/get',
+				action: 'mgr/orgs/get',
 				id: id
 			},
 			listeners: {
 				success: {
 					fn: function (r) {
 						var w = MODx.load({
-							xtype: 'organizations-item-window-update',
+							xtype: 'organizations-orgs-window-update',
 							id: Ext.id(),
 							record: r,
 							listeners: {
@@ -111,21 +148,21 @@ Ext.extend(Organizations.grid.Items, MODx.grid.Grid, {
 		});
 	},
 
-	removeItem: function (act, btn, e) {
+	removeOrg: function (act, btn, e) {
 		var ids = this._getSelectedIds();
 		if (!ids.length) {
 			return false;
 		}
 		MODx.msg.confirm({
 			title: ids.length > 1
-				? _('organizations_items_remove')
-				: _('organizations_item_remove'),
+				? _('organizations_orgs_remove')
+				: _('organizations_org_remove'),
 			text: ids.length > 1
-				? _('organizations_items_remove_confirm')
-				: _('organizations_item_remove_confirm'),
+				? _('organizations_orgs_remove_confirm')
+				: _('organizations_org_remove_confirm'),
 			url: this.config.url,
 			params: {
-				action: 'mgr/item/remove',
+				action: 'mgr/orgs/remove',
 				ids: Ext.util.JSON.encode(ids),
 			},
 			listeners: {
@@ -139,7 +176,7 @@ Ext.extend(Organizations.grid.Items, MODx.grid.Grid, {
 		return true;
 	},
 
-	disableItem: function (act, btn, e) {
+	disableOrg: function (act, btn, e) {
 		var ids = this._getSelectedIds();
 		if (!ids.length) {
 			return false;
@@ -147,7 +184,7 @@ Ext.extend(Organizations.grid.Items, MODx.grid.Grid, {
 		MODx.Ajax.request({
 			url: this.config.url,
 			params: {
-				action: 'mgr/item/disable',
+				action: 'mgr/orgs/disable',
 				ids: Ext.util.JSON.encode(ids),
 			},
 			listeners: {
@@ -160,7 +197,7 @@ Ext.extend(Organizations.grid.Items, MODx.grid.Grid, {
 		})
 	},
 
-	enableItem: function (act, btn, e) {
+	enableOrg: function (act, btn, e) {
 		var ids = this._getSelectedIds();
 		if (!ids.length) {
 			return false;
@@ -168,7 +205,7 @@ Ext.extend(Organizations.grid.Items, MODx.grid.Grid, {
 		MODx.Ajax.request({
 			url: this.config.url,
 			params: {
-				action: 'mgr/item/enable',
+				action: 'mgr/orgs/enable',
 				ids: Ext.util.JSON.encode(ids),
 			},
 			listeners: {
@@ -182,32 +219,56 @@ Ext.extend(Organizations.grid.Items, MODx.grid.Grid, {
 	},
 
 	getFields: function (config) {
-		return ['id', 'name', 'description', 'active', 'actions'];
+		
+		return ['shortname','longtname','description','inn','kpp','ogrn','okpo','ur_address','postal_address','bank_name','bank_bik','bank_sity','bank_rasch_acc','bank_kor_acc','logotip','director','glav_buh','kontragent','email','site','phone','phone_add','fax','active', 'actions'];
 	},
 
 	getColumns: function (config) {
-		return [{
-			header: _('organizations_item_id'),
-			dataIndex: 'id',
+		/* 
+		Ext.Ajax.request({
+					async: false,
+					url: Organizations.config.connector_url,
+					params: {
+						action: 'mgr/orgs/getfields'
+					},
+					success: function(response, opts){
+						var columns = [];
+						org_fields = JSON.parse(response.responseText);
+						var column = {};
+						for (var z = 0; z < org_fields.length; z++){
+							if(org_fields[z]['active']){
+								column.header = org_fields[z]['label'];
+								column.dataIndex = org_fields[z]['name'];
+								column.sortable = true;
+								column.width = 100;
+							}
+							columns.push(column);
+						}
+					},
+				});
+		console.info(columns); */
+		return [ {
+			header: _('organizations_grid_shortname'),
+			dataIndex: 'shortname',
 			sortable: true,
-			width: 70
-		}, {
-			header: _('organizations_item_name'),
-			dataIndex: 'name',
+			width: 100,
+		},{
+			header: _('organizations_grid_inn'),
+			dataIndex: 'inn',
 			sortable: true,
-			width: 200,
-		}, {
-			header: _('organizations_item_description'),
-			dataIndex: 'description',
-			sortable: false,
-			width: 250,
-		}, {
+			width: 100,
+		},{
+			header: _('organizations_grid_kpp'),
+			dataIndex: 'kpp',
+			sortable: true,
+			width: 100,
+		},{
 			header: _('organizations_item_active'),
 			dataIndex: 'active',
 			renderer: Organizations.utils.renderBoolean,
 			sortable: true,
 			width: 100,
-		}, {
+		},{
 			header: _('organizations_grid_actions'),
 			dataIndex: 'actions',
 			renderer: Organizations.utils.renderActions,
@@ -219,8 +280,8 @@ Ext.extend(Organizations.grid.Items, MODx.grid.Grid, {
 
 	getTopBar: function (config) {
 		return [{
-			text: '<i class="icon icon-plus"></i>&nbsp;' + _('organizations_item_create'),
-			handler: this.createItem,
+			text: '<i class="icon icon-plus"></i>&nbsp;' + _('organizations_orgs_create'),
+			handler: this.createOrg,
 			scope: this
 		}, '->', {
 			xtype: 'textfield',
@@ -293,4 +354,4 @@ Ext.extend(Organizations.grid.Items, MODx.grid.Grid, {
 		this.refresh();
 	}
 });
-Ext.reg('organizations-grid-items', Organizations.grid.Items);
+Ext.reg('organizations-grid-orgs', Organizations.grid.Orgs);

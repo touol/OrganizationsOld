@@ -35,7 +35,7 @@ $xpdo_meta_map['Orgs']= array (
   array (
     'shortname' => 
     array (
-      'dbtype' => 'text',
+      'dbtype' => 'varchar',
       'precision' => '255',
       'phptype' => 'text',
       'null' => false,

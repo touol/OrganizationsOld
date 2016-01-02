@@ -7,7 +7,7 @@
 		<field key="xtype" dbtype="varchar" precision="15" phptype="string" null="true" default="" />
 	</object>
 	<object class="Orgs" table="orgs" extends="xPDOSimpleObject">
-		<field key="shortname" dbtype="text" precision="255" phptype="text" null="false" default=""/>
+		<field key="shortname" dbtype="varchar" precision="255" phptype="text" null="false" default=""/>
 		<field key="longtname" dbtype="text" precision="255" phptype="text" null="false" default=""/>
 		<field key="description" dbtype="text" phptype="text" null="true" default=""/>
 		<field key="inn" dbtype="int" precision="12" phptype="integer" attributes="unsigned" null="true" default="0" />

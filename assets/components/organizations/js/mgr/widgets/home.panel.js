@@ -20,13 +20,20 @@ Organizations.panel.Home = function (config) {
 			border: true,
 			hideMode: 'offsets',
 			items: [{
-				title: _('organizations_items'),
+				title: _('organizations_orgs'),
 				layout: 'anchor',
 				items: [{
 					html: _('organizations_intro_msg'),
 					cls: 'panel-desc',
 				}, {
-					xtype: 'organizations-grid-items',
+					xtype: 'organizations-grid-orgs',
+					cls: 'main-wrapper',
+				}]
+			},{
+				title: _('organizations_setting'),
+				layout: 'anchor',
+				items: [{
+					xtype: 'organizations-grid-fields',
 					cls: 'main-wrapper',
 				}]
 			}]
