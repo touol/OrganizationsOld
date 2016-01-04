@@ -71,7 +71,7 @@ Organizations.grid.Fields = function (config) {
 };
 Ext.extend(Organizations.grid.Fields, MODx.grid.Grid, {
 	getFields: function (config) {
-		return ['id', 'name', 'label', 'rank', 'xtype', 'active'];
+		return ['id', 'name', 'label', 'rank', 'xtype', 'column', 'active'];
 	},
 	getColumns: function (config) {
 		return [{
@@ -128,7 +128,12 @@ Organizations.combo.Units = function(config) {
             ,data: [
                 ['textfield','textfield'],
 				['textarea','textarea'],
-				['xcheckbox','xcheckbox']
+				['xcheckbox','xcheckbox'],
+				['org-combo-dadata','org-combo-dadata'],
+				['bank-combo-dadata','bank-combo-dadata'],
+				['fio-combo-dadata','fio-combo-dadata'],
+				['addr-combo-dadata','addr-combo-dadata'],
+				['email-combo-dadata','email-combo-dadata']
             ]
         })
         ,mode: 'local'
@@ -146,6 +151,7 @@ Organizations.combo.Cols = function(config) {
             id: 0
             ,fields: ['unit','display']
             ,data: [
+				['0','0'],
                 ['1','1'],
 				['2','2'],
 				['3','3']

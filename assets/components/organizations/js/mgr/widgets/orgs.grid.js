@@ -1,11 +1,19 @@
 
-
 Organizations.grid.Orgs = function (config) {
 	config = config || {};
 	if (!config.id) {
 		config.id = 'organizations-grid-orgs';
 	}
-	
+	Ext.Ajax.request({
+			url: Organizations.config.connector_url,
+			params: {
+				action: 'mgr/orgs/getfields'
+			},
+			success:function(response){
+				//console.info(response.responseText);
+				Organizations.config.org_fields = JSON.parse(response.responseText);
+			}
+	});
 	Ext.applyIf(config, {
 		url: Organizations.config.connector_url,
 		fields: this.getFields(config),
@@ -59,56 +67,24 @@ Ext.extend(Organizations.grid.Orgs, MODx.grid.Grid, {
 	},
 
 	createOrg: function (btn, e) {
-		Ext.Ajax.request({
-					async: false,
-					url: Organizations.config.connector_url,
-					params: {
-						action: 'mgr/orgs/getfields'
-					},
-					success: function(response, opts){
-						var fields = [];
-						var col1 = [];
-						var col2 = [];
-						var col3 = [];
-						org_fields = JSON.parse(response.responseText);
-						console.info('org_fields',org_fields);
-						console.info('Organizations.config',Organizations.config);
-						for (var z = 0; z < org_fields.length; z++){
-							var field = {};
-							if(org_fields[z]['active']){
-								field.xtype =org_fields[z]['xtype'];
-								field.fieldLabel = org_fields[z]['label'];
-								field.name = org_fields[z]['name'];
-								field.id = Ext.id();
-								field.anchor = '99%';
-								if(field.name == 'shortname'){
-									field.allowBlank = false;
-								}
-							}
-							fields.push(field);
-							
-						}
-						console.info('fields',fields);
-						Organizations.config.org_fields = fields;
-						var w = MODx.load({
-							xtype: 'organizations-orgs-window-create',
-							id: Ext.id(),
-							listeners: {
-								success: {
-									fn: function () {
-										this.refresh();
-									}, scope: this
-								}
-							}
-						});
-						w.reset();
-						w.setValues({active: true});
-						w.show(e.target);
-					},
-				});
+		var w = MODx.load({
+			xtype: 'organizations-orgs-window-create',
+			id: Ext.id(),
+			listeners: {
+				success: {
+					fn: function () {
+						this.refresh();
+					}, scope: this
+				}
+			}
+		});
+		w.reset();
+		w.setValues({active: true});
+		w.show(e.target);
+	},
+	getFieldsShow: function (response) {
 		
 	},
-
 	updateOrg: function (btn, e, row) {
 		if (typeof(row) != 'undefined') {
 			this.menu.record = row.data;
@@ -220,34 +196,17 @@ Ext.extend(Organizations.grid.Orgs, MODx.grid.Grid, {
 
 	getFields: function (config) {
 		
-		return ['shortname','longtname','description','inn','kpp','ogrn','okpo','ur_address','postal_address','bank_name','bank_bik','bank_sity','bank_rasch_acc','bank_kor_acc','logotip','director','glav_buh','kontragent','email','site','phone','phone_add','fax','active', 'actions'];
+		return ['id','shortname','longtname','description','inn','kpp','ogrn','okpo','ur_address','postal_address','bank_name','bank_bik','bank_sity','bank_rasch_acc','bank_kor_acc','logotip','director','glav_buh','kontragent','email','site','phone','phone_add','fax','active', 'actions'];
 	},
 
 	getColumns: function (config) {
-		/* 
-		Ext.Ajax.request({
-					async: false,
-					url: Organizations.config.connector_url,
-					params: {
-						action: 'mgr/orgs/getfields'
-					},
-					success: function(response, opts){
-						var columns = [];
-						org_fields = JSON.parse(response.responseText);
-						var column = {};
-						for (var z = 0; z < org_fields.length; z++){
-							if(org_fields[z]['active']){
-								column.header = org_fields[z]['label'];
-								column.dataIndex = org_fields[z]['name'];
-								column.sortable = true;
-								column.width = 100;
-							}
-							columns.push(column);
-						}
-					},
-				});
-		console.info(columns); */
+		
 		return [ {
+			header: _('organizations_grid_id'),
+			dataIndex: 'id',
+			sortable: false,
+			width: 50,
+		},{
 			header: _('organizations_grid_shortname'),
 			dataIndex: 'shortname',
 			sortable: true,
