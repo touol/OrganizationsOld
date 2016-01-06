@@ -6,11 +6,10 @@ $xpdo_meta_map['OrgsUsersLink']= array (
   'extends' => 'xPDOSimpleObject',
   'fields' => 
   array (
-    'org_id' => 0,
-    'user_id' => 0,
+    'org_id' => NULL,
+    'user_id' => NULL,
     'appointment' => '',
     'user_perm' => 0,
-    'discount' => 0,
     'active' => 1,
   ),
   'fieldMeta' => 
@@ -21,8 +20,7 @@ $xpdo_meta_map['OrgsUsersLink']= array (
       'precision' => '10',
       'phptype' => 'integer',
       'attributes' => 'unsigned',
-      'null' => true,
-      'default' => 0,
+      'null' => false,
     ),
     'user_id' => 
     array (
@@ -30,8 +28,7 @@ $xpdo_meta_map['OrgsUsersLink']= array (
       'precision' => '10',
       'phptype' => 'integer',
       'attributes' => 'unsigned',
-      'null' => true,
-      'default' => 0,
+      'null' => false,
     ),
     'appointment' => 
     array (
@@ -45,15 +42,6 @@ $xpdo_meta_map['OrgsUsersLink']= array (
     array (
       'dbtype' => 'int',
       'precision' => '3',
-      'phptype' => 'integer',
-      'attributes' => 'unsigned',
-      'null' => true,
-      'default' => 0,
-    ),
-    'discount' => 
-    array (
-      'dbtype' => 'int',
-      'precision' => '2',
       'phptype' => 'integer',
       'attributes' => 'unsigned',
       'null' => true,

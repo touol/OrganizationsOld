@@ -30,6 +30,7 @@ $xpdo_meta_map['Orgs']= array (
     'phone_add' => '',
     'fax' => '',
     'discount' => 0,
+    'manager_id' => 0,
     'active' => 1,
   ),
   'fieldMeta' => 
@@ -222,6 +223,15 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'int',
       'precision' => '2',
+      'phptype' => 'integer',
+      'attributes' => 'unsigned',
+      'null' => true,
+      'default' => 0,
+    ),
+    'manager_id' => 
+    array (
+      'dbtype' => 'int',
+      'precision' => '10',
       'phptype' => 'integer',
       'attributes' => 'unsigned',
       'null' => true,

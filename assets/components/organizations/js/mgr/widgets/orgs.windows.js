@@ -6,7 +6,7 @@ Organizations.window.CreateOrg = function (config) {
 	Ext.applyIf(config, {
 		title: _('organizations_orgs_create'),
 		width: 900,
-		height: 700,
+		height: 500,
 		url: Organizations.config.connector_url,
 		action: 'mgr/orgs/create',
 		layout: 'anchor',
@@ -97,7 +97,7 @@ Organizations.window.UpdateOrg = function (config) {
 	Ext.applyIf(config, {
 		title: _('organizations_orgs_update'),
 		width: 990,
-		height: 700,
+		height: 500,
 		url: Organizations.config.connector_url,
 		action: 'mgr/orgs/update',
 		fields: this.getFields(config),

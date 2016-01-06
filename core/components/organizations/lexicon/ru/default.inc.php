@@ -31,6 +31,7 @@ $_lang['organizations_org_remove_confirm'] = 'Вы уверены, что хот
 $_lang['organizations_orgs_remove_confirm'] = 'Вы уверены, что хотите удалить эти Организации?';
 $_lang['organizations_org_active'] = 'Включено';
 
+$_lang['organizations_grid_manager'] = 'Менеджер';
 $_lang['organizations_org_users'] = 'Пользователи';
 $_lang['organizations_user_add'] = 'Добавить Пользователя';
 $_lang['organizations_grid_user_org_id'] = 'Id Организации';

@@ -233,7 +233,7 @@ Ext.extend(Organizations.grid.Orgs, MODx.grid.Grid, {
 
 	getFields: function (config) {
 		
-		return ['id','shortname','longtname','description','inn','kpp','ogrn','okpo','ur_address','postal_address','bank_name','bank_bik','bank_sity','bank_rasch_acc','bank_kor_acc','logotip','director','glav_buh','kontragent','email','site','phone','phone_add','fax','active', 'actions'];
+		return ['id','shortname','longtname','inn','kpp','kontragent','discount','manager_id','manager','active', 'actions'];
 	},
 
 	getColumns: function (config) {
@@ -256,6 +256,16 @@ Ext.extend(Organizations.grid.Orgs, MODx.grid.Grid, {
 		},{
 			header: _('organizations_grid_kpp'),
 			dataIndex: 'kpp',
+			sortable: true,
+			width: 100,
+		},{
+			header: _('organizations_grid_user_discount'),
+			dataIndex: 'discount',
+			sortable: true,
+			width: 100,
+		},{
+			header: _('organizations_grid_manager'),
+			dataIndex: 'manager',
 			sortable: true,
 			width: 100,
 		},{
