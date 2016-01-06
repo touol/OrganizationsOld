@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Get a list of Orgs
+ * Get a list of Users
  */
-class OrgsGetListProcessor extends modObjectGetListProcessor {
-	public $objectType = 'Orgs';
-	public $classKey = 'Orgs';
+class UsersGetListProcessor extends modObjectGetListProcessor {
+	public $objectType = 'OrgsUsersLink';
+	public $classKey = 'OrgsUsersLink';
 	public $defaultSortField = 'id';
-	public $defaultSortDirection = 'DESC';
+	public $defaultSortDirection = 'ASC';
 	//public $permission = 'list';
 
 
@@ -21,7 +21,6 @@ class OrgsGetListProcessor extends modObjectGetListProcessor {
 		if (!$this->checkPermissions()) {
 			return $this->modx->lexicon('access_denied');
 		}
-
 		return true;
 	}
 
@@ -33,10 +32,20 @@ class OrgsGetListProcessor extends modObjectGetListProcessor {
 	 */
 	public function prepareQueryBeforeCount(xPDOQuery $c) {
 		$query = trim($this->getProperty('query'));
+		$org_id = trim($this->getProperty('org_id'));
+		$c->leftJoin('modUser','modUser', '`'.$this->classKey.'`.`user_id` = `modUser`.`id`');
+		$c->leftJoin('Orgs','Orgs', '`'.$this->classKey.'`.`org_id` = `Orgs`.`id`');
+		$orderColumns = $this->modx->getSelectColumns($this->classKey, $this->classKey, '', '', true);
+		$c->select($orderColumns . ', `modUser`.`username` as `username`, `Orgs`.`shortname` as `shortname`');
 		if ($query) {
 			$c->where(array(
 				'name:LIKE' => "%{$query}%",
 				'OR:description:LIKE' => "%{$query}%",
+			));
+		}
+		if ($org_id) {
+			$c->where(array(
+				'`Orgs`.`id`:LIKE' => "%{$org_id}%",
 			));
 		}
 
@@ -54,33 +63,23 @@ class OrgsGetListProcessor extends modObjectGetListProcessor {
 		$array['actions'] = array();
 
 		// Edit
-		$array['actions'][] = array(
+		/* $array['actions'][] = array(
 			'cls' => '',
 			'icon' => 'icon icon-edit',
-			'title' => $this->modx->lexicon('organizations_org_update'),
+			'title' => $this->modx->lexicon('organizations_user_update'),
 			//'multiple' => $this->modx->lexicon('organizations_orgs_update'),
-			'action' => 'updateOrg',
+			'action' => 'updateUser',
 			'button' => true,
 			'menu' => true,
-		);
-		
-		$array['actions'][] = array(
-			'cls' => '',
-			'icon' => 'icon icon-user',
-			'title' => $this->modx->lexicon('organizations_org_users'),
-			//'multiple' => $this->modx->lexicon('organizations_orgs_update'),
-			'action' => 'updateUsers',
-			'button' => true,
-			'menu' => true,
-		);
+		); */
 		
 		if (!$array['active']) {
 			$array['actions'][] = array(
 				'cls' => '',
 				'icon' => 'icon icon-power-off action-green',
-				'title' => $this->modx->lexicon('organizations_org_enable'),
-				'multiple' => $this->modx->lexicon('organizations_orgs_enable'),
-				'action' => 'enableOrg',
+				'title' => $this->modx->lexicon('organizations_user_enable'),
+				'multiple' => $this->modx->lexicon('organizations_users_enable'),
+				'action' => 'enableUser',
 				'button' => true,
 				'menu' => true,
 			);
@@ -90,9 +89,9 @@ class OrgsGetListProcessor extends modObjectGetListProcessor {
 			$array['actions'][] = array(
 				'cls' => '',
 				'icon' => 'icon icon-power-off action-gray',
-				'title' => $this->modx->lexicon('organizations_org_disable'),
-				'multiple' => $this->modx->lexicon('organizations_orgs_disable'),
-				'action' => 'disableOrg',
+				'title' => $this->modx->lexicon('organizations_user_disable'),
+				'multiple' => $this->modx->lexicon('organizations_users_disable'),
+				'action' => 'disableUser',
 				'button' => true,
 				'menu' => true,
 			);
@@ -102,9 +101,9 @@ class OrgsGetListProcessor extends modObjectGetListProcessor {
 		$array['actions'][] = array(
 			'cls' => '',
 			'icon' => 'icon icon-trash-o action-red',
-			'title' => $this->modx->lexicon('organizations_org_remove'),
-			'multiple' => $this->modx->lexicon('organizations_orgs_remove'),
-			'action' => 'removeOrg',
+			'title' => $this->modx->lexicon('organizations_user_remove'),
+			'multiple' => $this->modx->lexicon('organizations_users_remove'),
+			'action' => 'removeUser',
 			'button' => true,
 			'menu' => true,
 		);
@@ -114,4 +113,4 @@ class OrgsGetListProcessor extends modObjectGetListProcessor {
 
 }
 
-return 'OrgsGetListProcessor';
+return 'UsersGetListProcessor';

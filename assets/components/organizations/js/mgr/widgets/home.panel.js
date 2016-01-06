@@ -23,11 +23,16 @@ Organizations.panel.Home = function (config) {
 				title: _('organizations_orgs'),
 				layout: 'anchor',
 				items: [{
-					html: _('organizations_intro_msg'),
-					cls: 'panel-desc',
-				}, {
 					xtype: 'organizations-grid-orgs',
 					cls: 'main-wrapper',
+				}]
+			},{
+				title: _('organizations_org_users'),
+				layout: 'anchor',
+				items: [{
+					xtype: 'organizations-grid-users',
+					cls: 'main-wrapper',
+					id:config.id + '-' + 'grid-users'
 				}]
 			},{
 				title: _('organizations_setting'),

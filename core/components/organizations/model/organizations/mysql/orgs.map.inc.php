@@ -7,7 +7,7 @@ $xpdo_meta_map['Orgs']= array (
   'fields' => 
   array (
     'shortname' => '',
-    'longtname' => '',
+    'longname' => '',
     'description' => '',
     'inn' => 0,
     'kpp' => 0,
@@ -29,6 +29,7 @@ $xpdo_meta_map['Orgs']= array (
     'phone' => '',
     'phone_add' => '',
     'fax' => '',
+    'discount' => 0,
     'active' => 1,
   ),
   'fieldMeta' => 
@@ -41,7 +42,7 @@ $xpdo_meta_map['Orgs']= array (
       'null' => false,
       'default' => '',
     ),
-    'longtname' => 
+    'longname' => 
     array (
       'dbtype' => 'text',
       'precision' => '255',
@@ -216,6 +217,15 @@ $xpdo_meta_map['Orgs']= array (
       'phptype' => 'text',
       'null' => false,
       'default' => '',
+    ),
+    'discount' => 
+    array (
+      'dbtype' => 'int',
+      'precision' => '2',
+      'phptype' => 'integer',
+      'attributes' => 'unsigned',
+      'null' => true,
+      'default' => 0,
     ),
     'active' => 
     array (

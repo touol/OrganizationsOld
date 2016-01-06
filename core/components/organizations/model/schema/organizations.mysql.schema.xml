@@ -8,7 +8,7 @@
 	</object>
 	<object class="Orgs" table="orgs" extends="xPDOSimpleObject">
 		<field key="shortname" dbtype="varchar" precision="255" phptype="text" null="false" default=""/>
-		<field key="longtname" dbtype="text" precision="255" phptype="text" null="false" default=""/>
+		<field key="longname" dbtype="text" precision="255" phptype="text" null="false" default=""/>
 		<field key="description" dbtype="text" phptype="text" null="true" default=""/>
 		<field key="inn" dbtype="int" precision="12" phptype="integer" attributes="unsigned" null="true" default="0" />
 		<field key="kpp" dbtype="int" precision="9" phptype="integer" attributes="unsigned" null="true" default="0" />
@@ -30,6 +30,7 @@
 		<field key="phone" dbtype="text" precision="255" phptype="text" null="false" default=""/>
 		<field key="phone_add" dbtype="text" phptype="text" null="false" default=""/>
 		<field key="fax" dbtype="text" precision="255" phptype="text" null="false" default=""/>
+		<field key="discount" dbtype="int" precision="2" phptype="integer" attributes="unsigned" null="true" default="0" />
 		<field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
 
 		<index alias="shortname" name="shortname" primary="false" unique="false" type="BTREE">
@@ -49,6 +50,7 @@
 		<field key="user_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
 		<field key="appointment" dbtype="text" precision="255" phptype="text" null="true" default=""/>
 		<field key="user_perm" dbtype="int" precision="3" phptype="integer" attributes="unsigned" null="true" default="0" />
+		<field key="discount" dbtype="int" precision="2" phptype="integer" attributes="unsigned" null="true" default="0" />
 		<field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
 
 		<index alias="org_id" name="org_id" primary="false" unique="false" type="BTREE">

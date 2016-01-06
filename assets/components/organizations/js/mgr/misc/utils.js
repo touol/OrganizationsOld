@@ -81,3 +81,11 @@ Organizations.utils.renderActions = function (value, props, row) {
 		res.join('')
 	);
 };
+
+Organizations.utils.userLink = function(val,cell,row) {
+	if (!val) {return '';}
+	var action = MODx.action ? MODx.action['security/user/update'] : 'security/user/update';
+	var url = 'index.php?a='+action+'&id='+row.data['user_id'];
+	//console.info(row);
+	return '<a href="' + url + '" target="_blank">' + val + '</a>';
+};

@@ -123,6 +123,43 @@ Ext.extend(Organizations.grid.Orgs, MODx.grid.Grid, {
 			}
 		});
 	},
+	updateUsers: function (btn, e, row) {
+		if (typeof(row) != 'undefined') {
+			this.menu.record = row.data;
+		}
+		else if (!this.menu.record) {
+			return false;
+		}
+		var id = this.menu.record.id;
+		MODx.Ajax.request({
+			url: this.config.url,
+			params: {
+				action: 'mgr/orgs/get',
+				id: id
+			},
+			listeners: {
+				success: {
+					fn: function (r) {
+						var w = MODx.load({
+							xtype: 'organizations-users-window',
+							id: Ext.id(),
+							record: r,
+							listeners: {
+								success: {
+									fn: function () {
+										this.refresh();
+									}, scope: this
+								}
+							}
+						});
+						w.reset();
+						w.setValues(r.object);
+						w.show(e.target);
+					}, scope: this
+				}
+			}
+		});
+	},
 
 	removeOrg: function (act, btn, e) {
 		var ids = this._getSelectedIds();
@@ -239,7 +276,7 @@ Ext.extend(Organizations.grid.Orgs, MODx.grid.Grid, {
 
 	getTopBar: function (config) {
 		return [{
-			text: '<i class="icon icon-plus"></i>&nbsp;' + _('organizations_orgs_create'),
+			text: '<i class="icon icon-plus"></i>&nbsp;' + _('organizations_org_create'),
 			handler: this.createOrg,
 			scope: this
 		}, '->', {

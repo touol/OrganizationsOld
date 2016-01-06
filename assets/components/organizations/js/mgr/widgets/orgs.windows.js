@@ -159,7 +159,13 @@ Ext.extend(Organizations.window.UpdateOrg, MODx.Window, {
 		cols31.items = col3;
 		cols3.items.push(cols31);
 		fields.push(cols1,cols2,cols3);
-		return [field0,{
+		return [{
+			xtype: 'hidden',
+			name: 'id',
+			id: config.id + '-id',
+		},
+		field0,
+		{
 			layout: 'column',
 			defaults: {
 				xtype: 'panel',
