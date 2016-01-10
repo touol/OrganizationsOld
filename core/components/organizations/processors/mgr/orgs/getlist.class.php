@@ -7,8 +7,8 @@ class OrgsGetListProcessor extends modObjectGetListProcessor {
 	public $objectType = 'Orgs';
 	public $classKey = 'Orgs';
 	public $defaultSortField = 'id';
-	public $defaultSortDirection = 'DESC';
-	//public $permission = 'list';
+	public $defaultSortDirection = 'ASC';
+	public $permission = 'list';
 
 
 	/**
@@ -33,10 +33,15 @@ class OrgsGetListProcessor extends modObjectGetListProcessor {
 	 */
 	public function prepareQueryBeforeCount(xPDOQuery $c) {
 		$query = trim($this->getProperty('query'));
+		$c->leftJoin('modUser','modUser', '`'.$this->classKey.'`.`manager_id` = `modUser`.`id`');
+		$Columns = $this->modx->getSelectColumns($this->classKey, $this->classKey, '', '', true);
+		$c->select($Columns . ', `modUser`.`username` as `manager`');
 		if ($query) {
 			$c->where(array(
-				'name:LIKE' => "%{$query}%",
-				'OR:description:LIKE' => "%{$query}%",
+				'`Orgs`.`shortname`:LIKE' => "%{$query}%",
+				'OR:`modUser`.`username`:LIKE' => "%{$query}%",
+				'OR:`Orgs`.`inn`:LIKE' => "%{$query}%",
+				'OR:`Orgs`.`discount`:LIKE' => "%{$query}%",
 			));
 		}
 

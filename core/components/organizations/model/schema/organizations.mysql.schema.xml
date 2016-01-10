@@ -10,14 +10,14 @@
 		<field key="shortname" dbtype="varchar" precision="255" phptype="text" null="false" default=""/>
 		<field key="longname" dbtype="text" precision="255" phptype="text" null="false" default=""/>
 		<field key="description" dbtype="text" phptype="text" null="true" default=""/>
-		<field key="inn" dbtype="int" precision="12" phptype="integer" attributes="unsigned" null="true" default="0" />
-		<field key="kpp" dbtype="int" precision="9" phptype="integer" attributes="unsigned" null="true" default="0" />
-		<field key="ogrn" dbtype="int" precision="13" phptype="integer" attributes="unsigned" null="true" default="0" />
-		<field key="okpo" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
+		<field key="inn" dbtype="varchar" precision="12" phptype="text" null="false" default="" />
+		<field key="kpp" dbtype="varchar" precision="9" phptype="text" null="false" default="" />
+		<field key="ogrn" dbtype="varchar" precision="13" phptype="text" null="false" default="" />
+		<field key="okpo" dbtype="varchar" precision="10" phptype="text" null="false" default="" />
 		<field key="ur_address" dbtype="text" phptype="text" null="false" default=""/>
 		<field key="postal_address" dbtype="text" phptype="text" null="false" default=""/>
 		<field key="bank_name" dbtype="text" precision="300" phptype="text" null="false" default=""/>
-		<field key="bank_bik" dbtype="text" precision="300" phptype="text" null="false" default=""/>
+		<field key="bank_bik" dbtype="varchar" precision="9" phptype="text" null="false" default=""/>
 		<field key="bank_sity" dbtype="text" precision="300" phptype="text" null="false" default=""/>
 		<field key="bank_rasch_acc" dbtype="text" precision="300" phptype="text" null="false" default=""/>
 		<field key="bank_kor_acc" dbtype="text" precision="300" phptype="text" null="false" default=""/>
@@ -66,7 +66,7 @@
 		<aggregate alias="Orgs" class="Orgs" local="org_id" foreign="id" cardinality="one" owner="foreign" />
 		<aggregate alias="User" class="modUser" local="user_id" foreign="id" cardinality="one" owner="foreign" />
 	</object>
-	<object class="OrgsUsers" table="orgs_users_link" extends="xPDOSimpleObject">
+	<object class="OrgsUsers" table="orgs_users" extends="xPDOSimpleObject">
 		<field key="user_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" />
 		<field key="discount" dbtype="int" precision="2" phptype="integer" attributes="unsigned" null="true" default="0" />
 		<field key="manager_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />

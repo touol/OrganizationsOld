@@ -81,6 +81,13 @@ Organizations.utils.renderActions = function (value, props, row) {
 		res.join('')
 	);
 };
+Organizations.utils.managerLink = function(val,cell,row) {
+	if (!row.data['manager_id'] || !row.data['manager'] ) {return '';}
+	var action = MODx.action ? MODx.action['security/user/update'] : 'security/user/update';
+	var url = 'index.php?a='+action+'&id='+row.data['manager_id'];
+	//console.info(row);
+	return '<a href="' + url + '" target="_blank">' + row.data['manager'] + '</a>';
+};
 
 Organizations.utils.userLink = function(val,cell,row) {
 	if (!val) {return '';}

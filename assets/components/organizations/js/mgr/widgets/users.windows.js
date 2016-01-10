@@ -74,6 +74,13 @@ Organizations.grid.Users = function (config) {
 		paging: true,
 		remoteSort: true,
 		autoHeight: true,
+		listeners: {
+			'afterAutoSave': {
+				fn: function () {
+					this.refresh();
+				}, scope: this
+			}
+		}
 	});
 	Organizations.grid.Users.superclass.constructor.call(this, config);
 
@@ -189,7 +196,7 @@ Ext.extend(Organizations.grid.Users, MODx.grid.Grid, {
 
 	getFields: function (config) {
 		
-		return ['id','org_id','shortname','user_id','username','user_perm','discount', 'active', 'actions'];
+		return ['id','org_id','shortname','user_id','username','user_perm','discount', 'manager','manager_id', 'active', 'actions'];
 	},
 
 	getColumns: function (config) {
@@ -223,6 +230,13 @@ Ext.extend(Organizations.grid.Users, MODx.grid.Grid, {
 			width: 100,
 			editor: {xtype: 'textfield'},
 		},{
+			header: _('organizations_grid_manager'),
+			dataIndex: 'manager_id',
+			sortable: true,
+			width: 100,
+			renderer: Organizations.utils.managerLink,
+			editor: {xtype: 'manager-combo', },
+		},{
 			header: _('organizations_item_active'),
 			dataIndex: 'active',
 			renderer: Organizations.utils.renderBoolean,
@@ -247,9 +261,9 @@ Ext.extend(Organizations.grid.Users, MODx.grid.Grid, {
 		}, '->', {
 			xtype: 'textfield',
 			name: 'query',
-			width: 200,
+			width: 300,
 			id: config.id + '-search-field',
-			emptyText: _('organizations_grid_search'),
+			emptyText: _('organizations_grid_user_search'),
 			listeners: {
 				render: {
 					fn: function (tf) {
@@ -331,9 +345,9 @@ Organizations.window.addUser = function (config) {
 		layout: 'anchor',
 		
 		fields: [{
-				xtype: 'hidden',
-				fieldLabel: _('organizations_grid_user_org_id'),
-				name: 'org_id',
+				xtype: 'org-combo',
+				fieldLabel: _('organizations_org'),
+				//name: 'org_id',
 				id: config.id + '-' + 'org_id',
 				anchor: '99%'
 			},{
@@ -343,16 +357,22 @@ Organizations.window.addUser = function (config) {
 				id: config.id + '-' + 'user_id',
 				anchor: '99%'
 			},{
-				xtype: 'xcheckbox',
-				fieldLabel: _('organizations_grid_user_user_perm'),
-				name: 'user_perm',
-				id: config.id + '-' + 'user_perm',
+				xtype: 'manager-combo',
+				fieldLabel: _('organizations_grid_manager'),
+				//name: 'user_id',
+				id: config.id + '-' + 'manager_id',
 				anchor: '99%'
 			},{
 				xtype: 'textfield',
 				fieldLabel: _('organizations_grid_user_discount'),
 				name: 'discount',
 				id: config.id + '-' + 'discount',
+				anchor: '99%'
+			},{
+				xtype: 'xcheckbox',
+				fieldLabel: _('organizations_grid_user_user_perm'),
+				name: 'user_perm',
+				id: config.id + '-' + 'user_perm',
 				anchor: '99%'
 			},{
 				xtype: 'xcheckbox',
@@ -380,7 +400,10 @@ Organizations.combo.User = function(config) {
     Ext.applyIf(config,{
 		baseParams:{
             action: 'mgr/users/getuser',
+			group: 'user',
+			limit:10
         },
+		hideTrigger: false,
 		fields: ['id' , 'username', 'search'],
 		displayField: 'search',
 		valueField: 'id',
@@ -391,3 +414,42 @@ Organizations.combo.User = function(config) {
 };
 Ext.extend(Organizations.combo.User ,Organizations.combo.Dadata);
 Ext.reg('organizations-combo-user',Organizations.combo.User);
+
+Organizations.combo.Manager = function(config) {
+    config = config || {};
+    Ext.applyIf(config,{
+		baseParams:{
+            action: 'mgr/users/getuser',
+			group: 'manager',
+			limit:10
+        },
+		hideTrigger: false,
+		fields: ['id' , 'username', 'search'],
+		displayField: 'search',
+		valueField: 'id',
+		hiddenName:'manager_id',
+		hiddenValue: '',
+    });
+    Organizations.combo.Manager.superclass.constructor.call(this,config);
+};
+Ext.extend(Organizations.combo.Manager ,Organizations.combo.Dadata);
+Ext.reg('manager-combo',Organizations.combo.Manager);
+
+Organizations.combo.Org = function(config) {
+    config = config || {};
+    Ext.applyIf(config,{
+		baseParams:{
+            action: 'mgr/orgs/getlist',
+			limit:10
+        },
+		hideTrigger: false,
+		fields: ['id' , 'shortname'],
+		displayField: 'shortname',
+		valueField: 'id',
+		hiddenName:'org_id',
+		hiddenValue: '',
+    });
+    Organizations.combo.Org.superclass.constructor.call(this,config);
+};
+Ext.extend(Organizations.combo.Org ,Organizations.combo.Dadata);
+Ext.reg('org-combo',Organizations.combo.Org);

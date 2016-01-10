@@ -22,9 +22,9 @@ Organizations.window.CreateOrg = function (config) {
 Ext.extend(Organizations.window.CreateOrg, MODx.Window, {
 
 	getFields: function (config) {
-		var fields = []; var col1 = [];var col2 = [];var col3 = [];var field0 = {};
+		var fields = []; var col1 = [];var col2 = [];var col3 = [];var field0 = [];
 		org_fields = Organizations.config.org_fields;
-		for (var z = 0; z < org_fields.length; z++){
+		for (var z in org_fields){
 			var field = {};
 			if(org_fields[z]['active']){
 				field.xtype =org_fields[z]['xtype'];
@@ -38,7 +38,7 @@ Ext.extend(Organizations.window.CreateOrg, MODx.Window, {
 			}
 			switch (org_fields[z]['column']){
 				case '0':
-					field0 =field;
+					field0.push(field);
 				break
 				case '1':
 					col1.push(field);
@@ -112,9 +112,9 @@ Organizations.window.UpdateOrg = function (config) {
 Ext.extend(Organizations.window.UpdateOrg, MODx.Window, {
 
 	getFields: function (config) {
-		var fields = []; var col1 = [];var col2 = [];var col3 = [];var field0 = {};
+		var fields = []; var col1 = [];var col2 = [];var col3 = [];var field0 = [];var org_fields = [];
 		org_fields = Organizations.config.org_fields;
-		for (var z = 0; z < org_fields.length; z++){
+		for (var z in org_fields) {
 			var field = {};
 			if(org_fields[z]['active']){
 				field.xtype =org_fields[z]['xtype'];
@@ -128,7 +128,7 @@ Ext.extend(Organizations.window.UpdateOrg, MODx.Window, {
 			}
 			switch (org_fields[z]['column']){
 				case '0':
-					field0 =field;
+					field0.push(field);
 				break
 				case '1':
 					col1.push(field);
@@ -228,7 +228,7 @@ Organizations.combo.Dadata = function(config) {
 	    minChars: 2,
 	    hideTrigger: true,
 		triggerAction: 'all',
-	    emptyText: 'Введите текст',
+	    emptyText: '',
 		typeAhead: true,
 	    //pageSize: true, // указание на то что нужно вывести листалку
 		fields: ['value','search_value'],

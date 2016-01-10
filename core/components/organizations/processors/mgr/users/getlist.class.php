@@ -35,12 +35,16 @@ class UsersGetListProcessor extends modObjectGetListProcessor {
 		$org_id = trim($this->getProperty('org_id'));
 		$c->leftJoin('modUser','modUser', '`'.$this->classKey.'`.`user_id` = `modUser`.`id`');
 		$c->leftJoin('Orgs','Orgs', '`'.$this->classKey.'`.`org_id` = `Orgs`.`id`');
-		$orderColumns = $this->modx->getSelectColumns($this->classKey, $this->classKey, '', '', true);
-		$c->select($orderColumns . ', `modUser`.`username` as `username`, `Orgs`.`shortname` as `shortname`');
+		$c->leftJoin('OrgsUsers','OrgsUsers', '`'.$this->classKey.'`.`user_id` = `OrgsUsers`.`user_id`');
+		$Columns = $this->modx->getSelectColumns($this->classKey, $this->classKey, '', '', true);
+		$c->leftJoin('modUser','modUser1', '`OrgsUsers`.`manager_id` = `modUser1`.`id`');
+		$c->select($Columns . ', `modUser`.`username` as `username`, `Orgs`.`shortname` as `shortname`, `OrgsUsers`.`discount` as `discount`, `OrgsUsers`.`manager_id` as `manager_id`, `modUser1`.`username` as `manager`');
 		if ($query) {
 			$c->where(array(
-				'name:LIKE' => "%{$query}%",
-				'OR:description:LIKE' => "%{$query}%",
+				'`Orgs`.`shortname`:LIKE' => "%{$query}%",
+				'OR:`modUser`.`username`:LIKE' => "%{$query}%",
+				'OR:`modUser1`.`username`:LIKE' => "%{$query}%",
+				'OR:`OrgsUsers`.`discount`:LIKE' => "%{$query}%",
 			));
 		}
 		if ($org_id) {

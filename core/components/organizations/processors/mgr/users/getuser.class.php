@@ -32,8 +32,18 @@ class UsersComboProcessor extends modObjectGetListProcessor {
 	 */
 	public function prepareQueryBeforeCount(xPDOQuery $c) {
 		$query = trim($this->getProperty('query'));
+		$group = trim($this->getProperty('group'));
+		if($group == 'manager'){
+			$groups = explode(",",$this->modx->getOption('managerGroups'));
+		}else{
+			$groups = explode(",",$this->modx->getOption('userGroups'));
+		}
+		$c->where(array(
+				'`modUserGroupMember`.`user_group`:IN' => $groups
+			));
 		$c->leftJoin('modUserProfile','modUserProfile', '`'.$this->classKey.'`.`id` = `modUserProfile`.`internalKey`');
-		$c->select('`modUser`.`id`, `modUser`.`username`, `modUserProfile`.`fullname` as `fullname`');
+		$c->leftJoin('modUserGroupMember','modUserGroupMember', '`'.$this->classKey.'`.`id` = `modUserGroupMember`.`member`');
+		$c->select('`modUser`.`id`, `modUser`.`username`, `modUserProfile`.`fullname` as `fullname`, `modUserGroupMember`.`user_group`');
 		if ($query) {
 			$c->where(array(
 				'`modUser`.`username`:LIKE' => "%{$query}%",

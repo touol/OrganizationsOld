@@ -12,6 +12,7 @@ Organizations.grid.Orgs = function (config) {
 			success:function(response){
 				//console.info(response.responseText);
 				Organizations.config.org_fields = JSON.parse(response.responseText);
+				//console.info(Organizations.config);
 			}
 	});
 	Ext.applyIf(config, {
@@ -268,6 +269,7 @@ Ext.extend(Organizations.grid.Orgs, MODx.grid.Grid, {
 			dataIndex: 'manager',
 			sortable: true,
 			width: 100,
+			renderer: Organizations.utils.managerLink,
 		},{
 			header: _('organizations_item_active'),
 			dataIndex: 'active',
@@ -292,9 +294,9 @@ Ext.extend(Organizations.grid.Orgs, MODx.grid.Grid, {
 		}, '->', {
 			xtype: 'textfield',
 			name: 'query',
-			width: 200,
+			width: 300,
 			id: config.id + '-search-field',
-			emptyText: _('organizations_grid_search'),
+			emptyText: _('organizations_grid_org_search'),
 			listeners: {
 				render: {
 					fn: function (tf) {

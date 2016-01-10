@@ -29,9 +29,19 @@ class OrganizationsOrgsUsersLinkUpdateProcessor extends modProcessor {
 		$data = json_decode($data['data'],true);
 		unset($data['actions']);
 		unset($data['menu']);
-		$conf = $this->modx->getObject($this->classKey, $data['id']);
-		$conf->fromArray($data);
-		if($conf->save()){
+		
+		$orguser = $this->modx->getObject('OrgsUsers', array('user_id'=>$data['user_id']));
+		
+		$orguser->fromArray($data);
+		if($orguser->save()){
+			//return $this->success('',$data);
+		}else{
+			return $this->failure($this->modx->lexicon($this->objectType.'_err_save'));
+		}
+		
+		$orguserlink = $this->modx->getObject($this->classKey, $data['id']);
+		$orguserlink->fromArray($data);
+		if($orguserlink->save()){
 			return $this->success('',$data);
 		}else{
 			return $this->failure($this->modx->lexicon($this->objectType.'_err_save'));

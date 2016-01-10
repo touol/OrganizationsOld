@@ -2,7 +2,7 @@
 $xpdo_meta_map['OrgsUsers']= array (
   'package' => 'organizations',
   'version' => '1.1',
-  'table' => 'orgs_users_link',
+  'table' => 'orgs_users',
   'extends' => 'xPDOSimpleObject',
   'fields' => 
   array (

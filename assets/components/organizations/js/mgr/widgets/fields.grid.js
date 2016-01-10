@@ -133,7 +133,8 @@ Organizations.combo.Units = function(config) {
 				['bank-combo-dadata','bank-combo-dadata'],
 				['fio-combo-dadata','fio-combo-dadata'],
 				['addr-combo-dadata','addr-combo-dadata'],
-				['email-combo-dadata','email-combo-dadata']
+				['email-combo-dadata','email-combo-dadata'],
+				['manager-combo','manager-combo']
             ]
         })
         ,mode: 'local'
