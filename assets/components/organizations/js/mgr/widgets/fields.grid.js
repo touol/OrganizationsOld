@@ -37,7 +37,7 @@ Organizations.grid.Fields = function (config) {
 		sm: new Ext.grid.CheckboxSelectionModel(),
 		baseParams: {
 			action: 'mgr/settings/getlist',
-			//settings: 'org_fields'
+			setting: 'org_fields'
 		},
 		listeners: {render: {fn: this.dd, scope: this}},
 		save_action: 'mgr/settings/update',

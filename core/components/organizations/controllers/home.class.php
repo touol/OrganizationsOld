@@ -32,10 +32,11 @@ class OrganizationsHomeManagerController extends OrganizationsMainController {
 		$this->addCss($this->Organizations->config['cssUrl'] . 'mgr/bootstrap.buttons.css');
 		$this->addJavascript($this->Organizations->config['jsUrl'] . 'mgr/misc/utils.js');
 		$this->addJavascript($this->Organizations->config['jsUrl'] . 'mgr/widgets/orgs.grid.js');
-		$this->addJavascript($this->Organizations->config['jsUrl'] . 'mgr/widgets/fields.grid.js');
+		//$this->addJavascript($this->Organizations->config['jsUrl'] . 'mgr/widgets/fields.grid.js');
 		$this->addJavascript($this->Organizations->config['jsUrl'] . 'mgr/widgets/orgs.windows.js');
 		$this->addJavascript($this->Organizations->config['jsUrl'] . 'mgr/widgets/users.windows.js');
 		$this->addJavascript($this->Organizations->config['jsUrl'] . 'mgr/widgets/home.panel.js');
+		//$this->addJavascript($this->Organizations->config['jsUrl'] . 'mgr/widgets/groups.grid.js');
 		$this->addJavascript($this->Organizations->config['jsUrl'] . 'mgr/sections/home.js');
 		$this->addHtml('<script type="text/javascript">
 		Ext.onReady(function() {

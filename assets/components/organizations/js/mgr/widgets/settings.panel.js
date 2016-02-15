@@ -1,4 +1,4 @@
-Organizations.panel.Home = function (config) {
+Organizations.panel.Settings = function (config) {
 	config = config || {};
 	Ext.apply(config, {
 		baseCls: 'modx-formpanel',
@@ -20,24 +20,26 @@ Organizations.panel.Home = function (config) {
 			border: true,
 			hideMode: 'offsets',
 			items: [{
-				title: _('organizations_orgs'),
+				title: _('organizations_setting_fields'),
 				layout: 'anchor',
 				items: [{
-					xtype: 'organizations-grid-orgs',
+					xtype: 'organizations-grid-fields',
 					cls: 'main-wrapper',
+					id:config.id + '-' + 'grid-fields'
 				}]
 			},{
-				title: _('organizations_org_users'),
+				title: _('organizations_setting_groups'),
 				layout: 'anchor',
 				items: [{
-					xtype: 'organizations-grid-users',
+					xtype: 'organizations-grid-groups',
+					//xtype: 'organizations-grid-access',
 					cls: 'main-wrapper',
-					id:config.id + '-' + 'grid-users'
+					id:config.id + '-' + 'grid-groups'
 				}]
 			}]
 		}]
 	});
-	Organizations.panel.Home.superclass.constructor.call(this, config);
+	Organizations.panel.Settings.superclass.constructor.call(this, config);
 };
-Ext.extend(Organizations.panel.Home, MODx.Panel);
-Ext.reg('organizations-panel-home', Organizations.panel.Home);
+Ext.extend(Organizations.panel.Settings, MODx.Panel);
+Ext.reg('organizations-panel-settings', Organizations.panel.Settings);

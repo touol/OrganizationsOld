@@ -33,17 +33,21 @@ class UsersComboProcessor extends modObjectGetListProcessor {
 	public function prepareQueryBeforeCount(xPDOQuery $c) {
 		$query = trim($this->getProperty('query'));
 		$group = trim($this->getProperty('group'));
+		$c->leftJoin('modUserProfile','modUserProfile', '`'.$this->classKey.'`.`id` = `modUserProfile`.`internalKey`');
+		$c->leftJoin('modUserGroupMember','modUserGroupMember', '`'.$this->classKey.'`.`id` = `modUserGroupMember`.`member`');
+		$c->select('`modUser`.`id`, `modUser`.`username`, `modUserProfile`.`fullname` as `fullname`, `modUserGroupMember`.`user_group`');
+		
 		if($group == 'manager'){
 			$groups = explode(",",$this->modx->getOption('managerGroups'));
 		}else{
 			$groups = explode(",",$this->modx->getOption('userGroups'));
+			$c->leftJoin('OrgsUsers','OrgsUsers', '`'.$this->classKey.'`.`id` = `OrgsUsers`.`user_id`');
+			$c->select('`modUser`.`id`, `modUser`.`username`, `modUserProfile`.`fullname` as `fullname`, `modUserGroupMember`.`user_group`, `OrgsUsers`.`manager_id`,`OrgsUsers`.`discount`');
 		}
 		$c->where(array(
 				'`modUserGroupMember`.`user_group`:IN' => $groups
 			));
-		$c->leftJoin('modUserProfile','modUserProfile', '`'.$this->classKey.'`.`id` = `modUserProfile`.`internalKey`');
-		$c->leftJoin('modUserGroupMember','modUserGroupMember', '`'.$this->classKey.'`.`id` = `modUserGroupMember`.`member`');
-		$c->select('`modUser`.`id`, `modUser`.`username`, `modUserProfile`.`fullname` as `fullname`, `modUserGroupMember`.`user_group`');
+		
 		if ($query) {
 			$c->where(array(
 				'`modUser`.`username`:LIKE' => "%{$query}%",
@@ -69,7 +73,10 @@ class UsersComboProcessor extends modObjectGetListProcessor {
 			'search' => $array['username'].' '.$array['fullname'],
 			'username' => $array['username']
 		);
-		
+		if(isset($array['discount'])){
+			$user['discount'] = $array['discount'];
+			$user['manager_id'] = $array['manager_id'];
+		}
 		return $user;
 	}
 

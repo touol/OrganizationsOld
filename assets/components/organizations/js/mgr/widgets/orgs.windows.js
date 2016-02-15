@@ -273,6 +273,21 @@ Organizations.combo.DadataOrg = function(config) {
             select: {
                 fn: function (combo, value) {
 					combo.setValue(value.data.value);
+					Ext.Ajax.request({
+							url: Organizations.config.connector_url,
+							params: {
+								action: 'mgr/orgs/testorg',
+								shortname: value.data.value,
+								inn: value.json.data.inn
+							},
+							success:function(response){
+								console.info(response.responseText);
+								resp = JSON.parse(response.responseText);
+								if(!resp.success){
+									MODx.msg.alert(_('error'), _('organizations_org_add_failure'));
+								}
+							}
+					});
 					id = combo.id.substr(0, combo.id.length - combo.name.length);
 					cmp = Ext.getCmp(id + 'longname');
 					if(cmp !== undefined){cmp.setValue(value.json.data.name.full_with_opf);}

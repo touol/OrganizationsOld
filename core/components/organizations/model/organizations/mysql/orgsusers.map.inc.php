@@ -9,6 +9,7 @@ $xpdo_meta_map['OrgsUsers']= array (
     'user_id' => NULL,
     'discount' => 0,
     'manager_id' => 0,
+    'default_org_id' => NULL,
   ),
   'fieldMeta' => 
   array (
@@ -37,6 +38,14 @@ $xpdo_meta_map['OrgsUsers']= array (
       'attributes' => 'unsigned',
       'null' => true,
       'default' => 0,
+    ),
+    'default_org_id' => 
+    array (
+      'dbtype' => 'int',
+      'precision' => '10',
+      'phptype' => 'integer',
+      'attributes' => 'unsigned',
+      'null' => false,
     ),
   ),
   'indexes' => 

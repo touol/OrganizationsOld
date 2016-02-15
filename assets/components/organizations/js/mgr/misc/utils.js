@@ -88,7 +88,10 @@ Organizations.utils.managerLink = function(val,cell,row) {
 	//console.info(row);
 	return '<a href="' + url + '" target="_blank">' + row.data['manager'] + '</a>';
 };
-
+Organizations.utils.groupLink = function(val,cell,row) {
+	if (!row.data['user_group_id'] || !row.data['user_group_name'] ) {return '';}
+	return row.data['user_group_name'];
+};
 Organizations.utils.userLink = function(val,cell,row) {
 	if (!val) {return '';}
 	var action = MODx.action ? MODx.action['security/user/update'] : 'security/user/update';

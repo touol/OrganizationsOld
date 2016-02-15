@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Get a list of Orgs
+ * Get a list of Groups
  */
-class OrgsGetListProcessor extends modObjectGetListProcessor {
-	public $objectType = 'Orgs';
-	public $classKey = 'Orgs';
+class OrgsGroupsGetListProcessor extends modObjectGetListProcessor {
+	public $objectType = 'OrgsUsersGroups';
+	public $classKey = 'OrgsUsersGroups';
 	public $defaultSortField = 'id';
 	public $defaultSortDirection = 'ASC';
 	public $permission = 'list';
@@ -32,7 +32,7 @@ class OrgsGetListProcessor extends modObjectGetListProcessor {
 	 * @return xPDOQuery
 	 */
 	public function prepareQueryBeforeCount(xPDOQuery $c) {
-		$query = trim($this->getProperty('query'));
+		/* $query = trim($this->getProperty('query'));
 		$c->leftJoin('modUser','modUser', '`'.$this->classKey.'`.`manager_id` = `modUser`.`id`');
 		$Columns = $this->modx->getSelectColumns($this->classKey, $this->classKey, '', '', true);
 		$c->select($Columns . ', `modUser`.`username` as `manager`');
@@ -43,7 +43,7 @@ class OrgsGetListProcessor extends modObjectGetListProcessor {
 				'OR:`Orgs`.`inn`:LIKE' => "%{$query}%",
 				'OR:`Orgs`.`discount`:LIKE' => "%{$query}%",
 			));
-		}
+		} */
 		return $c;
 	}
 
@@ -61,14 +61,14 @@ class OrgsGetListProcessor extends modObjectGetListProcessor {
 		$array['actions'][] = array(
 			'cls' => '',
 			'icon' => 'icon icon-edit',
-			'title' => $this->modx->lexicon('organizations_org_update'),
+			'title' => $this->modx->lexicon('organizations_group_update'),
 			//'multiple' => $this->modx->lexicon('organizations_orgs_update'),
-			'action' => 'updateOrg',
+			'action' => 'updateGroup',
 			'button' => true,
 			'menu' => true,
 		);
 		
-		$array['actions'][] = array(
+		/* $array['actions'][] = array(
 			'cls' => '',
 			'icon' => 'icon icon-user',
 			'title' => $this->modx->lexicon('organizations_org_users'),
@@ -76,9 +76,9 @@ class OrgsGetListProcessor extends modObjectGetListProcessor {
 			'action' => 'updateUsers',
 			'button' => true,
 			'menu' => true,
-		);
+		); */
 		
-		if (!$array['active']) {
+		/* if (!$array['active']) {
 			$array['actions'][] = array(
 				'cls' => '',
 				'icon' => 'icon icon-power-off action-green',
@@ -100,15 +100,15 @@ class OrgsGetListProcessor extends modObjectGetListProcessor {
 				'button' => true,
 				'menu' => true,
 			);
-		}
+		} */
 
 		// Remove
 		$array['actions'][] = array(
 			'cls' => '',
 			'icon' => 'icon icon-trash-o action-red',
-			'title' => $this->modx->lexicon('organizations_org_remove'),
-			'multiple' => $this->modx->lexicon('organizations_orgs_remove'),
-			'action' => 'removeOrg',
+			'title' => $this->modx->lexicon('organizations_group_remove'),
+			'multiple' => $this->modx->lexicon('organizations_groups_remove'),
+			'action' => 'removeGroup',
 			'button' => true,
 			'menu' => true,
 		);
@@ -118,4 +118,4 @@ class OrgsGetListProcessor extends modObjectGetListProcessor {
 
 }
 
-return 'OrgsGetListProcessor';
+return 'OrgsGroupsGetListProcessor';

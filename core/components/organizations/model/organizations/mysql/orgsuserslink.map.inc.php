@@ -9,7 +9,7 @@ $xpdo_meta_map['OrgsUsersLink']= array (
     'org_id' => NULL,
     'user_id' => NULL,
     'appointment' => '',
-    'user_perm' => 0,
+    'user_group_id' => 0,
     'active' => 1,
   ),
   'fieldMeta' => 
@@ -38,10 +38,10 @@ $xpdo_meta_map['OrgsUsersLink']= array (
       'null' => true,
       'default' => '',
     ),
-    'user_perm' => 
+    'user_group_id' => 
     array (
       'dbtype' => 'int',
-      'precision' => '3',
+      'precision' => '6',
       'phptype' => 'integer',
       'attributes' => 'unsigned',
       'null' => true,

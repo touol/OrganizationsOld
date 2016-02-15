@@ -5,10 +5,18 @@ $menus = array();
 $tmp = array(
 	'organizations' => array(
 		'description' => 'organizations_menu_desc',
+		'parent' => 'components',
 		'action' => array(
 			'controller' => 'index',
 		),
 	),
+	'orgs_settings' => array(
+		'description' => 'organizations_settings_menu_desc',
+		'parent' => 'organizations',
+		'action' => array(
+			'controller' => 'controllers/settings',
+		),
+	)
 );
 
 $i = 0;

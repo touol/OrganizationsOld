@@ -123,7 +123,30 @@ Ext.extend(Organizations.grid.Users, MODx.grid.Grid, {
 	getFieldsShow: function (response) {
 		
 	},
-	
+	updateUser: function (btn, e, row) {
+		if (typeof(row) != 'undefined') {
+			this.menu.record = row.data;
+		}
+		else if (!this.menu.record) {
+			return false;
+		}
+
+		var w = MODx.load({
+			xtype: 'organizations-user-window-update',
+			id: Ext.id(),
+			record: this.menu.record,
+			listeners: {
+				success: {
+					fn: function () {
+						this.refresh();
+					}, scope: this
+				}
+			}
+		});
+		w.reset();
+		w.setValues(this.menu.record);
+		w.show(e.target);
+	},
 	removeUser: function (act, btn, e) {
 		var ids = this._getSelectedIds();
 		if (!ids.length) {
@@ -196,7 +219,7 @@ Ext.extend(Organizations.grid.Users, MODx.grid.Grid, {
 
 	getFields: function (config) {
 		
-		return ['id','org_id','shortname','user_id','username','user_perm','discount', 'manager','manager_id', 'active', 'actions'];
+		return ['id','org_id','shortname','user_id','username','user_group_name','user_group_id','discount', 'manager','manager_id', 'active', 'actions'];
 	},
 
 	getColumns: function (config) {
@@ -218,12 +241,13 @@ Ext.extend(Organizations.grid.Users, MODx.grid.Grid, {
 			width: 100,
 			renderer: Organizations.utils.userLink,
 		},{
-			header: _('organizations_grid_user_user_perm'),
-			dataIndex: 'user_perm',
+			header: _('organizations_user_group_name'),
+			dataIndex: 'user_group_id',
 			sortable: true,
 			width: 100,
-			editor: {xtype: 'combo-boolean', renderer: 'boolean'}
-		},{
+			renderer: Organizations.utils.groupLink,
+			//editor: {xtype: 'group-combo'}
+		/* },{
 			header: _('organizations_grid_user_discount'),
 			dataIndex: 'discount',
 			sortable: true,
@@ -235,7 +259,7 @@ Ext.extend(Organizations.grid.Users, MODx.grid.Grid, {
 			sortable: true,
 			width: 100,
 			renderer: Organizations.utils.managerLink,
-			editor: {xtype: 'manager-combo', },
+			//editor: {xtype: 'manager-combo', }, */
 		},{
 			header: _('organizations_item_active'),
 			dataIndex: 'active',
@@ -357,6 +381,12 @@ Organizations.window.addUser = function (config) {
 				id: config.id + '-' + 'user_id',
 				anchor: '99%'
 			},{
+				xtype: 'group-combo',
+				fieldLabel: _('organizations_user_group_name'),
+				//name: 'user_group_id',
+				id: config.id + '-' + 'user_group_id',
+				anchor: '99%'
+			/* },{
 				xtype: 'manager-combo',
 				fieldLabel: _('organizations_grid_manager'),
 				//name: 'user_id',
@@ -367,13 +397,7 @@ Organizations.window.addUser = function (config) {
 				fieldLabel: _('organizations_grid_user_discount'),
 				name: 'discount',
 				id: config.id + '-' + 'discount',
-				anchor: '99%'
-			},{
-				xtype: 'xcheckbox',
-				fieldLabel: _('organizations_grid_user_user_perm'),
-				name: 'user_perm',
-				id: config.id + '-' + 'user_perm',
-				anchor: '99%'
+				anchor: '99%' */
 			},{
 				xtype: 'xcheckbox',
 				fieldLabel: _('organizations_user_active'),
@@ -395,6 +419,76 @@ Ext.extend(Organizations.window.addUser, MODx.Window, {
 });
 Ext.reg('organizations-adduser-window', Organizations.window.addUser);
 
+Organizations.window.updateUser = function (config) {
+	config = config || {};
+	if (!config.id) {
+		config.id = 'organizations-user-window-update';
+	}
+	Ext.applyIf(config, {
+		title: _('organizations_orgs_create'),
+		width: 500,
+		height: 500,
+		url: Organizations.config.connector_url,
+		action: 'mgr/users/update2',
+		layout: 'anchor',
+		
+		fields: [{
+				xtype: 'hidden',
+				//fieldLabel: _('organizations_org'),
+				name: 'id',
+				id: config.id + '-' + 'id',
+				anchor: '99%'
+			},{
+				xtype: 'org-combo',
+				fieldLabel: _('organizations_org'),
+				//name: 'org_id',
+				id: config.id + '-' + 'org_id',
+				anchor: '99%'
+			},{
+				xtype: 'organizations-combo-user',
+				fieldLabel: _('organizations_grid_user_username'),
+				//name: 'user_id',
+				id: config.id + '-' + 'user_id',
+				anchor: '99%'
+			},{
+				xtype: 'group-combo',
+				fieldLabel: _('organizations_user_group_name'),
+				//name: 'user_group_id',
+				id: config.id + '-' + 'user_group_id',
+				anchor: '99%'
+			/* },{
+				xtype: 'manager-combo',
+				fieldLabel: _('organizations_grid_manager'),
+				//name: 'user_id',
+				id: config.id + '-' + 'manager_id',
+				anchor: '99%'
+			},{
+				xtype: 'textfield',
+				fieldLabel: _('organizations_grid_user_discount'),
+				name: 'discount',
+				id: config.id + '-' + 'discount',
+				anchor: '99%' */
+			},{
+				xtype: 'xcheckbox',
+				fieldLabel: _('organizations_user_active'),
+				name: 'active',
+				id: config.id + '-' + 'active',
+				anchor: '99%'
+			}],
+			//'id','org_id','user_id','user_perm','discount', 'active',
+			//textfield xcheckbox
+		keys: [{
+			key: Ext.EventObject.ENTER, shift: true, fn: function () {
+				this.submit()
+			}, scope: this
+		}]
+	});
+	Organizations.window.updateUser.superclass.constructor.call(this, config);
+};
+Ext.extend(Organizations.window.updateUser, MODx.Window, {
+});
+Ext.reg('organizations-user-window-update', Organizations.window.updateUser);
+
 Organizations.combo.User = function(config) {
     config = config || {};
     Ext.applyIf(config,{
@@ -409,6 +503,18 @@ Organizations.combo.User = function(config) {
 		valueField: 'id',
 		hiddenName:'user_id',
 		hiddenValue: '',
+		listeners: {
+            select: {
+                fn: function (combo, value) {
+					id = combo.id.substr(0, combo.id.length - combo.hiddenName.length);
+					cmp = Ext.getCmp(id + 'manager_id');
+					if(cmp !== undefined){cmp.setValue(value.json.manager_id);}
+					cmp = Ext.getCmp(id + 'discount');
+					if(cmp !== undefined){cmp.setValue(value.json.discount);}
+					return true;
+                }
+            }
+        }
     });
     Organizations.combo.User.superclass.constructor.call(this,config);
 };
@@ -421,7 +527,6 @@ Organizations.combo.Manager = function(config) {
 		baseParams:{
             action: 'mgr/users/getuser',
 			group: 'manager',
-			limit:10
         },
 		hideTrigger: false,
 		fields: ['id' , 'username', 'search'],
@@ -440,7 +545,7 @@ Organizations.combo.Org = function(config) {
     Ext.applyIf(config,{
 		baseParams:{
             action: 'mgr/orgs/getlist',
-			limit:10
+
         },
 		hideTrigger: false,
 		fields: ['id' , 'shortname'],
@@ -453,3 +558,22 @@ Organizations.combo.Org = function(config) {
 };
 Ext.extend(Organizations.combo.Org ,Organizations.combo.Dadata);
 Ext.reg('org-combo',Organizations.combo.Org);
+
+Organizations.combo.Group = function(config) {
+    config = config || {};
+    Ext.applyIf(config,{
+		baseParams:{
+            action: 'mgr/groups/getlist',
+
+        },
+		hideTrigger: false,
+		fields: ['id' , 'name'],
+		displayField: 'name',
+		valueField: 'id',
+		hiddenName:'user_group_id',
+		hiddenValue: '',
+    });
+    Organizations.combo.Group.superclass.constructor.call(this,config);
+};
+Ext.extend(Organizations.combo.Group ,Organizations.combo.Dadata);
+Ext.reg('group-combo',Organizations.combo.Group);

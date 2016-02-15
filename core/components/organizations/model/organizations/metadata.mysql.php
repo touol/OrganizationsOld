@@ -7,5 +7,6 @@ $xpdo_meta_map = array (
     1 => 'Orgs',
     2 => 'OrgsUsersLink',
     3 => 'OrgsUsers',
+    4 => 'OrgsUsersGroups',
   ),
 );

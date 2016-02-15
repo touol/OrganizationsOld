@@ -38,5 +38,21 @@ class Organizations {
 		$this->modx->addPackage('organizations', $this->config['modelPath']);
 		$this->modx->lexicon->load('organizations:default');
 	}
-
+	function testAccess($OrgId, $access, $userId = Null ) {
+		if(is_null($userId)){
+			$userId = $this->modx->user->get('id');
+		}
+		$c = $this->modx->newQuery('OrgsUsersLink');
+		$c->where(array(
+						'`OrgsUsersLink`.`user_id`' => $userId,
+						'`OrgsUsersLink`.`org_id`' => $OrgId,
+					));
+		$c->leftJoin('OrgsUsersGroups','OrgsUsersGroups', '`OrgsUsersLink`.`user_group_id` = `OrgsUsersGroups`.`id`');
+		$c->select('`OrgsUsersGroups`.`data` as `access`');
+		if($userlink = $this->modx->getObject('OrgsUsersLink', $c) ){
+			$groupAccess = json_decode($userlink->access,true);
+			if(isset($groupAccess[$access])){return $groupAccess[$access];}
+		}
+		return false;
+	}
 }

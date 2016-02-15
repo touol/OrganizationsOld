@@ -36,9 +36,10 @@ class UsersGetListProcessor extends modObjectGetListProcessor {
 		$c->leftJoin('modUser','modUser', '`'.$this->classKey.'`.`user_id` = `modUser`.`id`');
 		$c->leftJoin('Orgs','Orgs', '`'.$this->classKey.'`.`org_id` = `Orgs`.`id`');
 		$c->leftJoin('OrgsUsers','OrgsUsers', '`'.$this->classKey.'`.`user_id` = `OrgsUsers`.`user_id`');
+		$c->leftJoin('OrgsUsersGroups','OrgsUsersGroups', '`'.$this->classKey.'`.`user_group_id` = `OrgsUsersGroups`.`id`');
 		$Columns = $this->modx->getSelectColumns($this->classKey, $this->classKey, '', '', true);
 		$c->leftJoin('modUser','modUser1', '`OrgsUsers`.`manager_id` = `modUser1`.`id`');
-		$c->select($Columns . ', `modUser`.`username` as `username`, `Orgs`.`shortname` as `shortname`, `OrgsUsers`.`discount` as `discount`, `OrgsUsers`.`manager_id` as `manager_id`, `modUser1`.`username` as `manager`');
+		$c->select($Columns . ', `modUser`.`username` as `username`, `Orgs`.`shortname` as `shortname`, `OrgsUsers`.`discount` as `discount`, `OrgsUsers`.`manager_id` as `manager_id`, `modUser1`.`username` as `manager`,`OrgsUsersGroups`.`name` as `user_group_name`');
 		if ($query) {
 			$c->where(array(
 				'`Orgs`.`shortname`:LIKE' => "%{$query}%",
@@ -67,7 +68,7 @@ class UsersGetListProcessor extends modObjectGetListProcessor {
 		$array['actions'] = array();
 
 		// Edit
-		/* $array['actions'][] = array(
+		$array['actions'][] = array(
 			'cls' => '',
 			'icon' => 'icon icon-edit',
 			'title' => $this->modx->lexicon('organizations_user_update'),
@@ -75,7 +76,7 @@ class UsersGetListProcessor extends modObjectGetListProcessor {
 			'action' => 'updateUser',
 			'button' => true,
 			'menu' => true,
-		); */
+		);
 		
 		if (!$array['active']) {
 			$array['actions'][] = array(
