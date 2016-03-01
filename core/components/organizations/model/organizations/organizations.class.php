@@ -38,14 +38,63 @@ class Organizations {
 		$this->modx->addPackage('organizations', $this->config['modelPath']);
 		$this->modx->lexicon->load('organizations:default');
 	}
-	function testAccess($OrgId, $access, $userId = Null ) {
+	function getDefaultOrgShortame($OrgId = Null, $userId = Null) {
 		if(is_null($userId)){
 			$userId = $this->modx->user->get('id');
+		}
+		if(is_null($OrgId)){
+			$OrgId = $this->getDefaultOrg($userId);
+			if($OrgId ==0) return "Не удалось определить ид организации!";
+		}
+		if($Org = $this->modx->getObject('Orgs', $OrgId) ){
+			return $Org->shortname;
+		}
+		return "Не удалось определить имя организации!";
+	}
+	function getDefaultOrg($userId = Null ) {
+		if(is_null($userId)){
+			$userId = $this->modx->user->get('id');
+		}
+		$defaultOrg =0;
+		//получить огр пользователя по умолчанию
+		if($defaultOrg ==0){
+			if($orguser = $this->modx->getObject('OrgsUsers', array('user_id'=>$userId))){
+				if($orguser->default_org_id !=0){$defaultOrg = $orguser->default_org_id;}
+			} 
+		}
+		if($defaultOrg ==0){
+			if($this->modx->getCount('OrgsUsersLink', array('user_id'=>$userId)) !=0){
+			   $c = $this->modx->newQuery('OrgsUsersLink');
+			   $c->sortby('id', 'ASC');
+			   $c->where(array(
+							'`OrgsUsersLink`.`user_id`' => $userId,
+							//'`OrgsUsersLink`.`active`' => 1,
+						));
+			   $items = $this->modx->getIterator('OrgsUsersLink', $c);
+			   $lastOrgId =0;
+				foreach ($items as $item) {
+					$lastOrgId = $item->org_id;
+				}
+				$defaultOrg = $lastOrgId;
+			}
+		}
+		return $defaultOrg;
+	}
+	
+	function testAccess($access, $OrgId = Null, $userId = Null ) {
+		if(is_null($userId)){
+			$userId = $this->modx->user->get('id');
+		}
+		
+		if(is_null($OrgId)){
+			$OrgId = $this->getDefaultOrg($userId);
+			if($OrgId ==0) return false;
 		}
 		$c = $this->modx->newQuery('OrgsUsersLink');
 		$c->where(array(
 						'`OrgsUsersLink`.`user_id`' => $userId,
 						'`OrgsUsersLink`.`org_id`' => $OrgId,
+						'`OrgsUsersLink`.`active`' => true,
 					));
 		$c->leftJoin('OrgsUsersGroups','OrgsUsersGroups', '`OrgsUsersLink`.`user_group_id` = `OrgsUsersGroups`.`id`');
 		$c->select('`OrgsUsersGroups`.`data` as `access`');

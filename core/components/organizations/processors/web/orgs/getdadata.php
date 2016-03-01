@@ -50,4 +50,4 @@ switch($suggest){
 	break;
 }
 $count =count($data);
-return '{"success":true,"message":"","total":"'.$count.'","results":'.$this->modx->toJSON($data).'}';
+echo '{"success":true,"message":"","total":"'.$count.'","results":'.$this->modx->toJSON($data).'}';
