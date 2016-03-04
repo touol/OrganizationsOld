@@ -34,6 +34,22 @@ Organizations.panel.Home = function (config) {
 					cls: 'main-wrapper',
 					id:config.id + '-' + 'grid-users'
 				}]
+			},{
+				title: _('organizations_org_invites'),
+				layout: 'anchor',
+				items: [{
+					xtype: 'organizations-grid-invites',
+					cls: 'main-wrapper',
+					id:config.id + '-' + 'grid-invites'
+				}]
+			},{
+				title: _('organizations_org_kupons'),
+				layout: 'anchor',
+				items: [{
+					xtype: 'organizations-grid-kupons',
+					cls: 'main-wrapper',
+					id:config.id + '-' + 'grid-kupons'
+				}]
 			}]
 		}]
 	});

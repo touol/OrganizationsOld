@@ -84,3 +84,103 @@ $_lang['organizations_accesss_remove'] = 'Удалить разрешения';
 $_lang['organizations_accesss_remove_confirm'] = 'Вы уверены, что хотите удалить эти разрешения?';
 $_lang['organizations_access_name'] = 'Имя';
 $_lang['organizations_access_description'] = 'Описание';
+
+//invites
+/* organizations_org_invites
+
+organizations_grid_invite_code
+organizations_grid_fullname
+organizations_grid_type
+organizations_grid_createdby_user_name
+organizations_grid_createdon
+organizations_grid_used
+organizations_grid_date_exp
+organizations_grid_email_sended
+
+organizations_invite_create
+organizations_grid_invite_search
+
+organizations_invites_remove
+organizations_invite_remove
+organizations_invites_remove_confirm
+organizations_invite_remove_confirm 
+
+organizations_user_send_email*/
+$_lang['organizations_org_invites'] = 'Приглашения';
+
+$_lang['organizations_grid_invite_code'] = 'Инвайт код';
+$_lang['organizations_grid_fullname'] = 'Имя приглашаемого';
+$_lang['organizations_invite_type'] = 'Тип инвайта';
+$_lang['organizations_grid_createdby_user_name'] = 'Создан польз.';
+$_lang['organizations_grid_createdon'] = 'Дата созд.';
+$_lang['organizations_grid_used'] = 'Использован';
+$_lang['organizations_grid_date_exp'] = 'Срок оконч.';
+$_lang['organizations_grid_email_sended'] = 'Письмо отпр.';
+
+$_lang['organizations_invite_create'] = 'Создать приглашение';
+$_lang['organizations_grid_invite_search'] = 'Поиск по ??';
+
+$_lang['organizations_invite_send'] = 'Отправить приглашение по почте';
+$_lang['organizations_invite_send_confirm'] = 'Вы уверены, что хотите отправить этот инвайт?';
+$_lang['organizations_invites_send'] = 'Отправить приглашения по почте';
+$_lang['organizations_invites_send_confirm'] = 'Вы уверены, что хотите отправить эти инвайты?';
+
+$_lang['organizations_invite_remove'] = 'Удалить инвайт';
+$_lang['organizations_invite_remove_confirm'] = 'Вы уверены, что хотите удалить этот инвайт?';
+$_lang['organizations_invites_remove'] = 'Удалить инвайты';
+$_lang['organizations_invites_remove_confirm'] = 'Вы уверены, что хотите удалить эти инвайты?';
+
+$_lang['organizations_user_send_email'] = 'Отправить приглашение по почте?';
+$_lang['organizations_invite_email'] = 'Адрес электронной почты';
+$_lang['organizations_invite_period'] = 'Cрок действия (в месяцах)';
+
+$_lang['organizations_org_add_invite'] = 'Добавить инвайт';
+$_lang['organizations_org_add_kupon'] = 'Добавить купон';
+//kupons
+/* organizations_org_kupons
+
+organizations_grid_kupon_code
+	organizations_grid_username
+organizations_grid_add_discount_proc
+organizations_grid_discount_price
+organizations_grid_createdby_user_name
+organizations_grid_createdon
+organizations_item_used
+organizations_grid_date_exp
+
+organizations_kupon_create
+organizations_grid_kupon_search
+
+organizations_kupons_remove
+organizations_kupon_remove
+organizations_kupons_remove_confirm
+organizations_kupon_remove_confirm 
+
+organizations_kupon_add_discount_proc
+organizations_kupon_period
+*/
+
+$_lang['organizations_org_kupons'] = 'Купоны';
+
+$_lang['organizations_grid_kupon_code'] = 'Код купона';
+$_lang['organizations_grid_username'] = 'Пользователь';
+$_lang['organizations_grid_add_discount_proc'] = 'Скидка купона %';
+$_lang['organizations_grid_discount_price'] = 'Скидка купона руб.';
+$_lang['organizations_kupon_type'] = 'Тип купона';
+$_lang['organizations_grid_createdby_user_name'] = 'Создан польз.';
+$_lang['organizations_grid_createdon'] = 'Дата созд.';
+$_lang['organizations_grid_used'] = 'Использован';
+
+$_lang['organizations_kupon_create'] = 'Создать купон';
+$_lang['organizations_grid_kupon_search'] = 'Поиск по ??';
+
+$_lang['organizations_kupon_remove'] = 'Удалить купон';
+$_lang['organizations_kupon_remove_confirm'] = 'Вы уверены, что хотите удалить этот купон?';
+$_lang['organizations_kupons_remove'] = 'Удалить инвайты';
+$_lang['organizations_kupons_remove_confirm'] = 'Вы уверены, что хотите удалить эти купоны?';
+
+$_lang['organizations_kupon_add_discount_proc'] = 'Скидка %';
+$_lang['organizations_kupon_discount_price'] = 'Скидка рублей';
+$_lang['organizations_kupon_use_count'] = 'Сколько раз можно использовать';
+$_lang['organizations_kupon_period'] = 'Cрок действия (в месяцах)';
+

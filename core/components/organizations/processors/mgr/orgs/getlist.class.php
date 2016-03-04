@@ -77,6 +77,25 @@ class OrgsGetListProcessor extends modObjectGetListProcessor {
 			'button' => true,
 			'menu' => true,
 		);
+		$array['actions'][] = array(
+			'cls' => '',
+			'icon' => 'icon icon-key',
+			'title' => $this->modx->lexicon('organizations_org_add_invite'),
+			//'multiple' => $this->modx->lexicon('organizations_orgs_update'),
+			'action' => 'addInvite',
+			'button' => true,
+			'menu' => true,
+		);
+		
+		$array['actions'][] = array(
+			'cls' => '',
+			'icon' => 'icon icon-credit-card',
+			'title' => $this->modx->lexicon('organizations_org_add_kupon'),
+			//'multiple' => $this->modx->lexicon('organizations_orgs_update'),
+			'action' => 'addKupon',
+			'button' => true,
+			'menu' => true,
+		);
 		
 		if (!$array['active']) {
 			$array['actions'][] = array(

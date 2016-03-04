@@ -99,3 +99,10 @@ Organizations.utils.userLink = function(val,cell,row) {
 	//console.info(row);
 	return '<a href="' + url + '" target="_blank">' + val + '</a>';
 };
+Organizations.utils.createuserLink = function(val,cell,row) {
+	if (!row.data['createdby_user_name'] || !row.data['createdby_user_id']) {return '';}
+	var action = MODx.action ? MODx.action['security/user/update'] : 'security/user/update';
+	var url = 'index.php?a='+action+'&id='+row.data['createdby_user_id'];
+	//console.info(row);
+	return '<a href="' + url + '" target="_blank">' + row.data['createdby_user_name'] + '</a>';
+};

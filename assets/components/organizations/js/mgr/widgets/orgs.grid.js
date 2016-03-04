@@ -83,6 +83,56 @@ Ext.extend(Organizations.grid.Orgs, MODx.grid.Grid, {
 		w.setValues({active: true});
 		w.show(e.target);
 	},
+	addInvite: function (btn, e) {
+		if (typeof(row) != 'undefined') {
+			this.menu.record = row.data;
+		}
+		else if (!this.menu.record) {
+			return false;
+		}
+		var id = this.menu.record.id;
+		
+		var w = MODx.load({
+			xtype: 'organizations-invites-window-create',
+			id: Ext.id(),
+			listeners: {
+				success: {
+					fn: function () {
+						this.refresh();
+					}, scope: this
+				}
+			}
+		});
+		w.reset();
+		w.setValues({org_id: id, send_email: true, user_group_id: 1, type: 1 });
+		w.show(e.target);
+	},
+	
+	addKupon: function (btn, e) {
+		if (typeof(row) != 'undefined') {
+			this.menu.record = row.data;
+		}
+		else if (!this.menu.record) {
+			return false;
+		}
+		var id = this.menu.record.id;
+		
+		var w = MODx.load({
+			xtype: 'organizations-kupons-window-create',
+			id: Ext.id(),
+			listeners: {
+				success: {
+					fn: function () {
+						//this.refresh();
+					}, scope: this
+				}
+			}
+		});
+		w.reset();
+		w.setValues({org_id: id, use_count: 1, type: 1});
+		w.show(e.target);
+	},
+	
 	getFieldsShow: function (response) {
 		
 	},
@@ -281,7 +331,7 @@ Ext.extend(Organizations.grid.Orgs, MODx.grid.Grid, {
 			dataIndex: 'actions',
 			renderer: Organizations.utils.renderActions,
 			sortable: false,
-			width: 100,
+			width: 140,
 			id: 'actions'
 		}];
 	},

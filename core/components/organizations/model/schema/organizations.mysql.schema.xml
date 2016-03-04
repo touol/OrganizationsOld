@@ -85,4 +85,45 @@
 			<column key="name" length="" collation="A" null="false"/>
 		</index>
 	</object>
+	<object class="OrgsInvites" table="orgs_invites" extends="xPDOSimpleObject">
+		<field key="invite_code" dbtype="varchar" precision="120" phptype="text" null="false" unique="true" />
+		<field key="description" dbtype="text" phptype="text" null="true" default=""/>
+		<field key="type" dbtype="int" precision="2" phptype="integer" attributes="unsigned" null="true" default="0" />
+		<field key="org_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0"  />
+		<field key="user_group_id" dbtype="int" precision="6" phptype="integer" attributes="unsigned" null="true" default="0" />
+		<field key="email" dbtype="text" precision="255" phptype="text" null="false" default=""/>
+		<field key="email_sended" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="0"/>
+		<field key="fullname" dbtype="text" precision="255" phptype="text" null="false" default=""/>
+		<field key="kupon_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
+		<field key="createdby_user_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="true" default="0" />
+		<field key="createdon" dbtype="datetime" phptype="datetime" null="true" default="0000-00-00 00:00:00" />
+		<field key="date_exp" dbtype="datetime" phptype="datetime" null="true" default="0000-00-00 00:00:00" />
+		<field key="used_user_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0"  />
+		<field key="used" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="0"/>
+		<field key="set_discount" dbtype="int" precision="2" phptype="integer" attributes="unsigned" null="true" default="0" />
+		<index alias="invite_code" name="invite_code" primary="false" unique="true" type="BTREE">
+			<column key="invite_code" length="" collation="A" null="false"/>
+		</index>
+		
+	</object>
+	<object class="OrgsKupons" table="orgs_kupons" extends="xPDOSimpleObject">
+		<field key="kupon_code" dbtype="varchar" precision="120" phptype="text" null="false"  />
+		<field key="description" dbtype="text" phptype="text" null="true" default=""/>
+		<field key="org_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0"  />
+		<field key="user_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0"  />
+		<field key="createdby_user_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="true" default="0" />
+		<field key="createdon" dbtype="datetime" phptype="datetime" null="true" default="0000-00-00 00:00:00" />
+		<field key="date_exp" dbtype="datetime" phptype="datetime" null="true" default="0000-00-00 00:00:00" />
+		<field key="last_used_user_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0"  />
+		<field key="type" dbtype="int" precision="2" phptype="integer" attributes="unsigned" null="true" default="0" />
+		<field key="add_discount_proc" dbtype="int" precision="2" phptype="integer" attributes="unsigned" null="true" default="0" />
+		<field key="discount_price" dbtype="int" precision="6" phptype="integer" attributes="unsigned" null="true" default="0" />
+		<field key="use_count" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="1"  />
+		<field key="used_count" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0"  />
+		<field key="used" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="0"/>
+		
+		<index alias="kupon_code" name="kupon_code" primary="false" unique="true" type="BTREE">
+			<column key="kupon_code" length="" collation="A" null="false"/>
+		</index>
+	</object>
 </model>
