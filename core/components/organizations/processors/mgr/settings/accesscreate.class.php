@@ -2,6 +2,7 @@
 
 class orgsAccessCreateProcessor extends modObjectProcessor {
 	public $classKey = 'OrgsConfig';
+	public $checkSavePermission = true;
 	
 	public function initialize() {
         if ($this->checkSavePermission && $this->object instanceof modAccessibleObject && !$this->object->checkPolicy('save')) {

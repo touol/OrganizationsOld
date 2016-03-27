@@ -7,7 +7,7 @@ class OrganizationsOrgEnableProcessor extends modObjectProcessor {
 	public $objectType = 'Orgs';
 	public $classKey = 'Orgs';
 	public $languageTopics = array('organizations');
-	//public $permission = 'save';
+	public $permission = 'save';
 
 
 	/**

@@ -7,7 +7,7 @@ class OrganizationsUsersLinkEnableProcessor extends modObjectProcessor {
 	public $objectType = 'OrgsUsersLink';
 	public $classKey = 'OrgsUsersLink';
 	public $languageTopics = array('organizations');
-	//public $permission = 'save';
+	public $permission = 'save';
 
 
 	/**

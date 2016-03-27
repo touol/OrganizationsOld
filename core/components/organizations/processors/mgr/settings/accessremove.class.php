@@ -2,7 +2,7 @@
 
 class orgsAccessRemoveProcessor extends modObjectProcessor {
 	public $classKey = 'OrgsConfig';
-	
+	public $checkSavePermission = true;
 	public function initialize() {
         if ($this->checkSavePermission && $this->object instanceof modAccessibleObject && !$this->object->checkPolicy('save')) {
             return $this->modx->lexicon('access_denied');

@@ -7,7 +7,7 @@ class OrganizationsOrgInviteSendProcessor extends modProcessor {
 	public $objectType = 'OrgsInvites';
 	public $classKey = 'OrgsInvites';
 	public $languageTopics = array('organizations');
-	public $permission = 'remove';
+	public $permission = 'save';
 
 
 	/**
