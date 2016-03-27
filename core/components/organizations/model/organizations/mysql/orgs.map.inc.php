@@ -217,9 +217,8 @@ $xpdo_meta_map['Orgs']= array (
     ),
     'discount' => 
     array (
-      'dbtype' => 'int',
-      'precision' => '2',
-      'phptype' => 'integer',
+      'dbtype' => 'double',
+      'phptype' => 'double',
       'attributes' => 'unsigned',
       'null' => true,
       'default' => 0,

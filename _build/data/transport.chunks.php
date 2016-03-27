@@ -3,14 +3,38 @@
 $chunks = array();
 
 $tmp = array(
-	/* 'tpl.Organizations.item' => array(
-		'file' => 'item',
-		'description' => '',
+	'editOrgOuter' => array(
+		'file' => 'editOrgOuter',
+		'description' => 'Внешний чанк для редактирования данных организации.',
 	),
-	'tpl.Organizations.office' => array(
-		'file' => 'office',
-		'description' => '',
-	), */
+	'editOrgRow' => array(
+		'file' => 'editOrgRow',
+		'description' => 'Внутрений чанк для редактирования данных организации.',
+	),
+	'editUserOrgOuter' => array(
+		'file' => 'editUserOrgOuter',
+		'description' => 'Внешний чанк для редактирования пользователей организации.',
+	),
+	'editUserOrgRow' => array(
+		'file' => 'editUserOrgRow',
+		'description' => 'Внутрений чанк для редактирования пользователей организации.',
+	),
+	'inviteOrgRow' => array(
+		'file' => 'inviteOrgRow',
+		'description' => 'Внутрений чанк для просмотра инвайтов организации.',
+	),
+	'invite_email_tpl' => array(
+		'file' => 'invite_email_tpl',
+		'description' => 'Текст емаил для приглашения пользователей от администраторов сайта.',
+	),
+	'invite_email_user_tpl' => array(
+		'file' => 'invite_email_user_tpl',
+		'description' => 'Текст емаил для приглашения пользователей от администраторов организации.',
+	),
+	'viewOrgOuter' => array(
+		'file' => 'viewOrgOuter',
+		'description' => 'Внешний чанк для просмотра данных организации.',
+	),
 );
 
 // Save chunks for setup options

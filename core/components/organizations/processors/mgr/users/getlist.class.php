@@ -50,7 +50,7 @@ class UsersGetListProcessor extends modObjectGetListProcessor {
 		}
 		if ($org_id) {
 			$c->where(array(
-				'`Orgs`.`id`:LIKE' => "%{$org_id}%",
+				'`Orgs`.`id`' => $org_id,
 			));
 		}
 

@@ -1,5 +1,10 @@
 <?php
 include_once 'setting.inc.php';
+$_lang['setting_DaDataAPI'] = 'API-ключ сервиса DaData';
+$_lang['setting_managerGroups'] = 'Группы менеджеров';
+$_lang['setting_managerGroups_desc'] = 'Список групп modx пользователей-менеджеров сайта, через запятую.';
+$_lang['setting_userGroups'] = 'Группы пользователей';
+$_lang['setting_userGroups_desc'] = 'Список групп modx для пользователей организаций, через запятую.';
 
 $_lang['organizations'] = 'Organizations';
 $_lang['orgs_settings'] = 'Настройки';

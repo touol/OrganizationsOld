@@ -2,13 +2,22 @@
 
 $settings = array();
 
-$tmp = array(/*
-	'some_setting' => array(
-		'xtype' => 'combo-boolean',
-		'value' => true,
-		'area' => 'organizations_main',
+$tmp = array(
+	'DaDataAPI' => array(
+		'xtype' => 'textfield',
+		'value' => '',
+		'area' => 'general',
 	),
-	*/
+	'managerGroups' => array(
+		'xtype' => 'textfield',
+		'value' => '3',
+		'area' => 'general',
+	),
+	'userGroups' => array(
+		'xtype' => 'textfield',
+		'value' => '2',
+		'area' => 'general',
+	),
 );
 
 foreach ($tmp as $k => $v) {
@@ -16,7 +25,8 @@ foreach ($tmp as $k => $v) {
 	$setting = $modx->newObject('modSystemSetting');
 	$setting->fromArray(array_merge(
 		array(
-			'key' => 'organizations_' . $k,
+			//'key' => 'organizations_' . $k,
+			'key' => $k,
 			'namespace' => PKG_NAME_LOWER,
 		), $v
 	), '', true, true);

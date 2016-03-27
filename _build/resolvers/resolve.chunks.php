@@ -3,12 +3,13 @@
 if ($object->xpdo) {
 	/** @var modX $modx */
 	$modx =& $object->xpdo;
-
+	$modx->log(modX::LOG_LEVEL_INFO, 'Updated chunks start');
 	switch ($options[xPDOTransport::PACKAGE_ACTION]) {
 		case xPDOTransport::ACTION_INSTALL:
 			break;
 
 		case xPDOTransport::ACTION_UPGRADE:
+			
 			if (!empty($options['chunks']) && !empty($options['update_chunks'])) {
 				foreach ($options['update_chunks'] as $v) {
 					if (!empty($options['chunks'][$v]) && $chunk = $modx->getObject('modChunk', array('name' => $v))) {
@@ -18,10 +19,12 @@ if ($object->xpdo) {
 					}
 				}
 			}
+			
 			break;
 
 		case xPDOTransport::ACTION_UNINSTALL:
 			break;
 	}
+	$modx->log(modX::LOG_LEVEL_INFO, 'Updated chunks end');
 }
 return true;

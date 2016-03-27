@@ -9,15 +9,15 @@ if ($object->xpdo) {
         case xPDOTransport::ACTION_UPGRADE:
             $modelPath = $modx->getOption('organizations_core_path', null, $modx->getOption('core_path') . 'components/organizations/') . 'model/';
             $modx->addPackage('organizations', $modelPath);
-
+			$modx->log(modX::LOG_LEVEL_INFO, 'Updated tables start');
             $manager = $modx->getManager();
             $objects = array();
             $schemaFile = MODX_CORE_PATH . 'components/organizations/model/schema/organizations.mysql.schema.xml';
             if (is_file($schemaFile)) {
                 $schema = new SimpleXMLElement($schemaFile, 0, true);
                 if (isset($schema->object)) {
-                    foreach ($schema->object as $object) {
-                        $objects[] = (string)$object['class'];
+                    foreach ($schema->object as $obj) {
+                        $objects[] = (string)$obj['class'];
                     }
                 }
                 unset($schema);
@@ -72,6 +72,7 @@ if ($object->xpdo) {
                     }
                 }
             }
+			$modx->log(modX::LOG_LEVEL_INFO, 'Updated tables end');
             break;
 
         case xPDOTransport::ACTION_UNINSTALL:

@@ -3,10 +3,30 @@
 $snippets = array();
 
 $tmp = array(
-	/* 'Organizations' => array(
-		'file' => 'organizations',
-		'description' => '',
-	), */
+	'CheckConteiner' => array(
+		'file' => 'CheckConteiner',
+		'description' => 'Проверка, что при регистрации введено имя организации.',
+	),
+	'checkAccess' => array(
+		'file' => 'checkAccess',
+		'description' => 'Проверяет права пользователей организации.',
+	),
+	'editOrgsUsers' => array(
+		'file' => 'editOrgsUsers',
+		'description' => 'Показывает пользователей организации и инвайты в нее.',
+	),
+	'getDefaultUserOrg' => array(
+		'file' => 'getDefaultUserOrg',
+		'description' => 'Показывает форму редактирования просмотра данных организации.',
+	),
+	'inviteReg' => array(
+		'file' => 'inviteReg',
+		'description' => 'Подставляет данные организации в форму регистрации пользователя при полученном инвайте организации.',
+	),
+	'loginRegisterHook' => array(
+		'file' => 'loginRegisterHook',
+		'description' => 'Вносит данные организации из формы loginRegister и привязывает пользователя к организации.',
+	),
 );
 
 foreach ($tmp as $k => $v) {

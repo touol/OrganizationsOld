@@ -3,7 +3,7 @@
 $properties = array();
 
 $tmp = array(
-	'tpl' => array(
+	/* 'tpl' => array(
 		'type' => 'textfield',
 		'value' => 'tpl.Organizations.item',
 	),
@@ -30,7 +30,7 @@ $tmp = array(
 	'toPlaceholder' => array(
 		'type' => 'combo-boolean',
 		'value' => false,
-	),
+	), */
 );
 
 foreach ($tmp as $k => $v) {

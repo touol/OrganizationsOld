@@ -106,8 +106,8 @@ class Organizations {
 	}
 	public function generate(
 			$length=6, 
-			$prefix='', 
-			$suffix='', 
+			$prefix='' 
+/* 			,$suffix='', 
 			$numbers=true,
 			$letters=true,
 			$symbols=false,
@@ -115,53 +115,38 @@ class Organizations {
 			$mask=false
 			// MASK FORMAT [XXX-XXX]
 			// 'X' this is random symbols
-			// '-' this is sepatator
-		) {
-			$numbers = $numbers == 'false' ? false : true ;
-			$letters = $letters == 'false' ? false : true ;
-			$symbols = $symbols == 'true' ? true : false ;
-			$random_register = $random_register == 'true' ? true : false ;
-			$mask = $mask == 'false' ? false : $mask ;
-
-			$numbers   = array(0,1,2,3,4,5,6,7,8,9);
-			$lowercase = array('q','w','e','r','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m');
-			$uppercase = array('Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Z','X','C','V','B','N','M');
-			$symbols_a = array('`','~','!','@','#','$','%','^','&','*','(',')','-','_','=','+','\\','|','/','[',']','{','}','"',"'",';',':','<','>',',','.','?');
-
-			$string = Array();
-			$coupon = '';
-			if ($letters) {
-				if ($random_register) {
-					$string = array_merge($string, $lowercase, $uppercase);
-				} else {
-					$string = array_merge($string, $uppercase);
-				}
-			}
-
-			if ($numbers) {
-				$string = array_merge($string, $numbers);
-			}
-
-			if ($symbols) {
-				$string = array_merge($string, $symbols_a);
-			}
-
-			if ($mask) {
-				for ($i=0; $i < strlen($mask); $i++) { 
-					if ($mask[$i] === 'X') {
-						$coupon .= $string[rand(0, count($string)-1)];
-					} else {
-						$coupon .= $mask[$i];
-					}
-				}
-			} else {
-				for ($i=0; $i < $length ; $i++) { 
-					$coupon .= $string[rand(0, count($string)-1)];
-				}
-			}
-
-			return $prefix . $coupon . $suffix;
+			// '-' this is sepatator */
+		) { //не лицензионный код удален. Название функции для совместимости.
+			$coupon = $this->rand_string($length, array('upp','num'));
+			return $prefix . $coupon ;
 		}
+	public function rand_string($nChars, array $case = array()) {
+
+		define ('LOW', 'abcdefghijklmnopqrstuvwxyz');
+		define ('UPP', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+		define ('NUM', '1234567890');
+		define ('SPEC', '^@*+-+%()!?');
+		
+		$symbols = array();
+		if (in_array('low', $case))
+			$symbols[] = LOW;
+		if (in_array('upp', $case))
+			$symbols[] = UPP;
+		if (in_array('num', $case))
+			$symbols[] = NUM;
+		if (in_array('spec', $case))
+			$symbols[] = SPEC;
+		if (count($symbols) == 0)
+			$symbols = array(LOW, UPP, NUM, SPEC);
+
+		$rand_str = '';
+		for ($i = 1; $i <= $nChars; $i++) { // циклим по числу необходимых символов в итоговой строке
+			$id = mt_rand(0, count($symbols)-1); // случайным образом определяем ТИП символов, из которых будем получать случайный СИМВОЛ
+			$source_str = $symbols[$id];
+			$rand_str .= $source_str{ mt_rand(0, strlen($source_str)-1) }; // очередной случаный символ
+		}
+		return $rand_str;
+	}
 	public function sendEmail($email, $subject, $body = 'no body set') {
 		if (!isset($this->modx->mail) || !is_object($this->modx->mail)) {
 			$this->modx->getService('mail', 'mail.modPHPMailer');

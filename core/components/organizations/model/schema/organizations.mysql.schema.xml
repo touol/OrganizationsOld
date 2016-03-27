@@ -30,7 +30,7 @@
 		<field key="phone" dbtype="text" precision="255" phptype="text" null="false" default=""/>
 		<field key="phone_add" dbtype="text" phptype="text" null="false" default=""/>
 		<field key="fax" dbtype="text" precision="255" phptype="text" null="false" default=""/>
-		<field key="discount" dbtype="int" precision="2" phptype="integer" attributes="unsigned" null="true" default="0" />
+		<field key="discount" dbtype="double" phptype="double" attributes="unsigned" null="true" default="0" />
 		<field key="manager_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
 		<field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
 
