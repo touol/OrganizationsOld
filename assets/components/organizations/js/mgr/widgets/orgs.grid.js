@@ -325,13 +325,13 @@ Ext.extend(Organizations.grid.Orgs, MODx.grid.Grid, {
 			dataIndex: 'active',
 			renderer: Organizations.utils.renderBoolean,
 			sortable: true,
-			width: 100,
+			width: 70,
 		},{
 			header: _('organizations_grid_actions'),
 			dataIndex: 'actions',
 			renderer: Organizations.utils.renderActions,
 			sortable: false,
-			width: 140,
+			width: 180,
 			id: 'actions'
 		}];
 	},

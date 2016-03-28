@@ -1,10 +1,10 @@
 --------------------
 Organizations
 --------------------
-Author: John Doe <john@doe.com>
+Author: Touol <touols@yandex.ru>
 --------------------
 
-A basic Extra for MODx Revolution.
+Organizations - это каталог организаций для CMS MODx.
 
 Feel free to suggest ideas/improvements/bugs on GitHub:
-http://github.com/username/Organizations/issues
+http://github.com/touol/Organizations/issues
