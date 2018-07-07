@@ -35,6 +35,10 @@ $tmp = array(
 		'file' => 'viewOrgOuter',
 		'description' => 'Внешний чанк для просмотра данных организации.',
 	),
+	'viewOrgData' => array(
+		'file' => 'viewOrgData',
+		'description' => 'Простой чанк для просмотра данных организации.',
+	),
 );
 
 // Save chunks for setup options

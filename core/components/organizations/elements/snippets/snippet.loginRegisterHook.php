@@ -40,7 +40,18 @@ if($invite_code!=''){
                 'active'=>true,
                 );
             $orgUserLink->fromArray($data);
-            if($orgUserLink->save()) return true;
+            if($orgUserLink->save()){
+				// создаем настройки пользователя
+				if($orgUser = $modx->newObject('OrgsUsers')){
+					$data = array(
+						//'default_org_id'=>$org_id,
+						'user_id'=>$userId,
+						);
+					$orgUser->fromArray($data);
+					$orgUser->save();
+				}
+				return true;
+			}
         }
     }
     return false;
@@ -85,7 +96,8 @@ if($orgUserLink = $modx->newObject('OrgsUsersLink')){
 // создаем настройки пользователя
 if($orgUser = $modx->newObject('OrgsUsers')){
     $data = array(
-        'default_org_id'=>$org->id,
+        //'default_org_id'=>$org->id,
+		'user_id'=>$userId,
         );
     $orgUser->fromArray($data);
     $orgUser->save();

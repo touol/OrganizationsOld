@@ -17,7 +17,7 @@ $tmp = array(
 	),
 	'getDefaultUserOrg' => array(
 		'file' => 'getDefaultUserOrg',
-		'description' => 'Показывает форму редактирования просмотра данных организации.',
+		'description' => 'Показывает форму редактирования, просмотра данных организации.',
 	),
 	'inviteReg' => array(
 		'file' => 'inviteReg',
@@ -26,6 +26,14 @@ $tmp = array(
 	'loginRegisterHook' => array(
 		'file' => 'loginRegisterHook',
 		'description' => 'Вносит данные организации из формы loginRegister и привязывает пользователя к организации.',
+	),
+	'orgsTVSelect' => array(
+		'file' => 'orgsTVSelect',
+		'description' => 'Сниппет для вывода списка организаций в TV список.',
+	),
+	'getOrgDataByID' => array(
+		'file' => 'getOrgDataByID',
+		'description' => 'Простой сниппет для вывода данных организации.',
 	),
 );
 
