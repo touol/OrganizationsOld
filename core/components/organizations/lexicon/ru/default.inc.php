@@ -189,3 +189,7 @@ $_lang['organizations_kupon_discount_price'] = 'Скидка рублей';
 $_lang['organizations_kupon_use_count'] = 'Сколько раз можно использовать';
 $_lang['organizations_kupon_period'] = 'Cрок действия (в месяцах)';
 
+$_lang['organizations_lico'] = 'Лицо';
+$_lang['organizations_urlico'] = 'Юридическое лицо';
+$_lang['organizations_fizlico'] = 'Физическое лицо';
+

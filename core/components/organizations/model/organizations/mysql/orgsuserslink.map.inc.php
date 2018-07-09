@@ -4,6 +4,10 @@ $xpdo_meta_map['OrgsUsersLink']= array (
   'version' => '1.1',
   'table' => 'orgs_users_link',
   'extends' => 'xPDOSimpleObject',
+  'tableMeta' => 
+  array (
+    'engine' => 'MyISAM',
+  ),
   'fields' => 
   array (
     'org_id' => NULL,

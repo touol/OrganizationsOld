@@ -4,6 +4,10 @@ $xpdo_meta_map['OrgsConfig']= array (
   'version' => '1.1',
   'table' => 'orgs_config',
   'extends' => 'xPDOSimpleObject',
+  'tableMeta' => 
+  array (
+    'engine' => 'MyISAM',
+  ),
   'fields' => 
   array (
     'setting' => '',

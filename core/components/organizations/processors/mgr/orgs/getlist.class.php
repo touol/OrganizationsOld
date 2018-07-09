@@ -34,7 +34,7 @@ class OrgsGetListProcessor extends modObjectGetListProcessor {
 	public function prepareQueryBeforeCount(xPDOQuery $c) {
 		$query = trim($this->getProperty('query'));
 		$c->leftJoin('modUser','modUser', '`'.$this->classKey.'`.`manager_id` = `modUser`.`id`');
-		$Columns = $this->modx->getSelectColumns($this->classKey, $this->classKey, '', '', true);
+		$Columns = $this->modx->getSelectColumns($this->classKey, $this->classKey, '', array(), true);
 		$c->select($Columns . ', `modUser`.`username` as `manager`');
 		if ($query) {
 			$c->where(array(

@@ -38,7 +38,7 @@ class KuponsGetListProcessor extends modObjectGetListProcessor {
 		$c->leftJoin('Orgs','Orgs', '`'.$this->classKey.'`.`org_id` = `Orgs`.`id`');
 		$c->leftJoin('modUser','modUser1', '`'.$this->classKey.'`.`createdby_user_id` = `modUser1`.`id`');
 		$c->leftJoin('modUser','modUser2', '`'.$this->classKey.'`.`last_used_user_id` = `modUser2`.`id`');
-		$Columns = $this->modx->getSelectColumns($this->classKey, $this->classKey, '', '', true);
+		$Columns = $this->modx->getSelectColumns($this->classKey, $this->classKey, '', array(), true);
 		
 		$c->select($Columns . ', `Orgs`.`shortname` as `shortname`, `modUser`.`username` as `username`, `modUser1`.`username` as `createdby_user_name`, `modUser1`.`username` as `last_used_user_name`');
 		if ($query) {

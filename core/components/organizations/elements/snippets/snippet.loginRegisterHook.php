@@ -13,6 +13,10 @@ $userId=$formFields['register.user']->id;
 $username=$formFields['register.user']->username;
 $fullname=$formFields['register.profile']->fullname;
 $OrgData=$formFields['org'];
+if($formFields['lico'] != "urlico"){
+    $OrgData['urlico'] = false;
+    $OrgData['shortname'] = $fullname." ".$userId;
+}
 //обработка инвайтов
 $invite_code=$formFields['invite_code'];
 if($invite_code!=''){
@@ -101,36 +105,4 @@ if($orgUser = $modx->newObject('OrgsUsers')){
         );
     $orgUser->fromArray($data);
     $orgUser->save();
-}
-//если орг. не новая отправляем сообщение администраторам организации
-if(!$active){
-    $c = $modx->newQuery('OrgsUsersLink');
-    $c->where(array(
-        'org_id'=>$org->id,
-        'user_group_id'=>$AdminGroupID,
-        'active'=>true,
-    ));
-    
-    $admins = $modx->getCollection('OrgsUsersLink',$c);
-    $msg_str = "К Вашей организации подключается пользователь: \n";
-    $msg_str .= "Логин: $username \n";
-    $msg_str .= "ФИО: $fullname. \n";
-    $msg_str .= "Если Вы уверенны, что ему необходимо предоставить доступ, включите его и настройте ему права в настройках Вашей организации. \n";
-    foreach ($admins as $adm){
-        sendMsgAdmin($userId,$adm->user_id,$msg_str,$modx);
-    }    
-}
-
-function sendMsgAdmin($userid,$to,$msg_str,$modx){
-    $msg = $modx->newObject('modUserMessage');
-    $msg->fromArray(array(
-       'sender' => $userid,
-         'recipient' => $to,
-         'message' => $msg_str,
-         'subject' => 'Новый пользователь в Вашей организации',
-         'read' => 0,
-         'private' => 1,
-         'date_sent'=> strftime('%Y-%m-%d %H:%M:%S'),
-    ));
-    $msg->save();
 }

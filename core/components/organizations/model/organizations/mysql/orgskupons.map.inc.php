@@ -4,6 +4,10 @@ $xpdo_meta_map['OrgsKupons']= array (
   'version' => '1.1',
   'table' => 'orgs_kupons',
   'extends' => 'xPDOSimpleObject',
+  'tableMeta' => 
+  array (
+    'engine' => 'MyISAM',
+  ),
   'fields' => 
   array (
     'kupon_code' => NULL,

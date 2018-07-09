@@ -37,7 +37,7 @@ class UsersGetListProcessor extends modObjectGetListProcessor {
 		$c->leftJoin('Orgs','Orgs', '`'.$this->classKey.'`.`org_id` = `Orgs`.`id`');
 		$c->leftJoin('OrgsUsers','OrgsUsers', '`'.$this->classKey.'`.`user_id` = `OrgsUsers`.`user_id`');
 		$c->leftJoin('OrgsUsersGroups','OrgsUsersGroups', '`'.$this->classKey.'`.`user_group_id` = `OrgsUsersGroups`.`id`');
-		$Columns = $this->modx->getSelectColumns($this->classKey, $this->classKey, '', '', true);
+		$Columns = $this->modx->getSelectColumns($this->classKey, $this->classKey, '', array(), true);
 		$c->leftJoin('modUser','modUser1', '`OrgsUsers`.`manager_id` = `modUser1`.`id`');
 		$c->select($Columns . ', `modUser`.`username` as `username`, `Orgs`.`shortname` as `shortname`, `OrgsUsers`.`discount` as `discount`, `OrgsUsers`.`manager_id` as `manager_id`, `modUser1`.`username` as `manager`,`OrgsUsersGroups`.`name` as `user_group_name`');
 		if ($query) {

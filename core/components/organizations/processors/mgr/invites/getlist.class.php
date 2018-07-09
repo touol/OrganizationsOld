@@ -39,7 +39,7 @@ class InvitesGetListProcessor extends modObjectGetListProcessor {
 		$c->leftJoin('modUser','modUser1', '`'.$this->classKey.'`.`createdby_user_id` = `modUser1`.`id`');
 		$c->leftJoin('modUser','modUser2', '`'.$this->classKey.'`.`used_user_id` = `modUser2`.`id`');
 		$c->leftJoin('OrgsKupons','OrgsKupons', '`'.$this->classKey.'`.`kupon_id` = `OrgsKupons`.`id`');
-		$Columns = $this->modx->getSelectColumns($this->classKey, $this->classKey, '', '', true);
+		$Columns = $this->modx->getSelectColumns($this->classKey, $this->classKey, '', array(), true);
 		
 		$c->select($Columns . ', `Orgs`.`shortname` as `shortname`, `modUser1`.`username` as `createdby_user_name`, `modUser1`.`username` as `used_user_name`, `OrgsKupons`.`kupon_code` as `kupon_code`');
 		if ($query) {

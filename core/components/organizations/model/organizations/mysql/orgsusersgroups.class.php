@@ -1,3 +1,3 @@
 <?php
-require_once (dirname(dirname(__FILE__)) . '/orgsusersgroups.class.php');
+require_once (dirname(__DIR__) . '/orgsusersgroups.class.php');
 class OrgsUsersGroups_mysql extends OrgsUsersGroups {}

@@ -4,8 +4,13 @@ $xpdo_meta_map['Orgs']= array (
   'version' => '1.1',
   'table' => 'orgs',
   'extends' => 'xPDOSimpleObject',
+  'tableMeta' => 
+  array (
+    'engine' => 'MyISAM',
+  ),
   'fields' => 
   array (
+    'urlico' => 1,
     'shortname' => '',
     'longname' => '',
     'description' => '',
@@ -35,6 +40,14 @@ $xpdo_meta_map['Orgs']= array (
   ),
   'fieldMeta' => 
   array (
+    'urlico' => 
+    array (
+      'dbtype' => 'tinyint',
+      'precision' => '1',
+      'phptype' => 'boolean',
+      'null' => true,
+      'default' => 1,
+    ),
     'shortname' => 
     array (
       'dbtype' => 'varchar',

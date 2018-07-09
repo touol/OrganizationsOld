@@ -27,6 +27,12 @@ if(isset($_GET['invite_code'])){
         $Org = $modx->getObject('Orgs',$invite->org_id);
         $modx->setPlaceholder('inv.shortname',$Org->shortname);
         $modx->setPlaceholder('inv.inn',$Org->inn);
+		if($Org->urlico){
+			$modx->setPlaceholder('inv.lico',"urlico");
+		}else{
+			$modx->setPlaceholder('inv.lico',"fizlico");
+		}
+		
     }
     //$modx->setPlaceholder('inv.shortname',$invite->shortname);
     $modx->setPlaceholder('inv.fullname',$invite->fullname);

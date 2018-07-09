@@ -3,6 +3,13 @@ Organizations.utils.renderBoolean = function (value, props, row) {
 		? String.format('<span class="green">{0}</span>', _('yes'))
 		: String.format('<span class="red">{0}</span>', _('no'));
 };
+Organizations.utils.renderBooleanLico = function (value, props, row) {
+	//console.info("value",value);
+	//console.info("row",row);
+	return value
+		? String.format('<span class="green">{0}</span>', _('organizations_urlico'))
+		: String.format('<span class="blue">{0}</span>', _('organizations_fizlico'));
+};
 
 Organizations.utils.getMenu = function (actions, grid, selected) {
 	var menu = [];
@@ -92,6 +99,7 @@ Organizations.utils.groupLink = function(val,cell,row) {
 	if (!row.data['user_group_id'] || !row.data['user_group_name'] ) {return '';}
 	return row.data['user_group_name'];
 };
+
 Organizations.utils.userLink = function(val,cell,row) {
 	if (!val) {return '';}
 	var action = MODx.action ? MODx.action['security/user/update'] : 'security/user/update';

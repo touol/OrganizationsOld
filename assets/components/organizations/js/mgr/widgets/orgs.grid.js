@@ -284,7 +284,7 @@ Ext.extend(Organizations.grid.Orgs, MODx.grid.Grid, {
 
 	getFields: function (config) {
 		
-		return ['id','shortname','longtname','inn','kpp','kontragent','discount','manager_id','manager','active', 'actions'];
+		return ['id','urlico','shortname','longtname','inn','kpp','kontragent','discount','manager_id','manager','active', 'actions'];
 	},
 
 	getColumns: function (config) {
@@ -294,6 +294,12 @@ Ext.extend(Organizations.grid.Orgs, MODx.grid.Grid, {
 			dataIndex: 'id',
 			sortable: false,
 			width: 50,
+		},{
+			header: _('organizations_lico'),
+			dataIndex: 'urlico',
+			renderer: Organizations.utils.renderBooleanLico,
+			sortable: true,
+			width: 70,
 		},{
 			header: _('organizations_grid_shortname'),
 			dataIndex: 'shortname',

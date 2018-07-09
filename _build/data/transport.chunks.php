@@ -39,6 +39,10 @@ $tmp = array(
 		'file' => 'viewOrgData',
 		'description' => 'Простой чанк для просмотра данных организации.',
 	),
+	'pageRegistration' => array(
+		'file' => 'pageRegistration',
+		'description' => 'Чанк формы регистрации.',
+	),
 );
 
 // Save chunks for setup options
