@@ -1,3 +1,6 @@
+<script type="text/javascript" src="/assets/components/organizations/js/bootstrap3-typeahead.min.js"></script>
+<script type="text/javascript" src="/assets/components/organizations/js/orgs.js"></script>
+
 [[!inviteReg?]]
 
 [[!Register?
@@ -145,8 +148,8 @@
             $('#statusBtn a').trigger('click');
         }
     });
-    $('.std_blue_tables input[name=username]').change(function() { 
-        if(this.value.indexOf('"')>0){
+    $('#username').change(function() { 
+        if(this.value.indexOf('"') > -1){
            alert('Логин не может содержать знак кавычки (").');
            this.value=this.value.replace(/"/g,'');
         }
