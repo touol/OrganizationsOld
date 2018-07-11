@@ -54,6 +54,13 @@ Organizations.grid.Orgs = function (config) {
 			this.getSelectionModel().clearSelections();
 		}
 	}, this);
+	var params = Ext.urlDecode(location.search.substring(1));
+	if (typeof params.id !== 'undefined') {
+		var org_id = Ext.getCmp(this.config.id + '-search-field-org_id');
+		if(org_id) org_id.setValue(params.id);
+		this._doSearch();
+	}
+	
 };
 Ext.extend(Organizations.grid.Orgs, MODx.grid.Grid, {
 	windows: {},
@@ -350,6 +357,21 @@ Ext.extend(Organizations.grid.Orgs, MODx.grid.Grid, {
 		}, '->', {
 			xtype: 'textfield',
 			name: 'query',
+			width: 100,
+			id: config.id + '-search-field-org_id',
+			emptyText: _('organizations_grid_org_id_search'),
+			listeners: {
+				render: {
+					fn: function (tf) {
+						tf.getEl().addKeyListener(Ext.EventObject.ENTER, function () {
+							this._doSearch();
+						}, this);
+					}, scope: this
+				}
+			}
+		}, {
+			xtype: 'textfield',
+			name: 'query',
 			width: 300,
 			id: config.id + '-search-field',
 			emptyText: _('organizations_grid_org_search'),
@@ -406,7 +428,12 @@ Ext.extend(Organizations.grid.Orgs, MODx.grid.Grid, {
 	},
 
 	_doSearch: function (tf, nv, ov) {
-		this.getStore().baseParams.query = tf.getValue();
+		if(tf){
+			this.getStore().baseParams.query = tf.getValue();
+		}
+		var org_id = Ext.getCmp(this.config.id + '-search-field-org_id');
+		if(org_id) this.getStore().baseParams.org_id = org_id.getValue();
+		
 		this.getBottomToolbar().changePage(1);
 		this.refresh();
 	},
@@ -414,6 +441,11 @@ Ext.extend(Organizations.grid.Orgs, MODx.grid.Grid, {
 	_clearSearch: function (btn, e) {
 		this.getStore().baseParams.query = '';
 		Ext.getCmp(this.config.id + '-search-field').setValue('');
+		
+		this.getStore().baseParams.org_id = '';
+		var org_id = Ext.getCmp(this.config.id + '-search-field-org_id');
+		if(org_id) org_id.setValue('');
+		
 		this.getBottomToolbar().changePage(1);
 		this.refresh();
 	}

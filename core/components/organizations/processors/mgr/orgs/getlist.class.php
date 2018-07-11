@@ -44,6 +44,12 @@ class OrgsGetListProcessor extends modObjectGetListProcessor {
 				'OR:`Orgs`.`discount`:LIKE' => "%{$query}%",
 			));
 		}
+		$org_id = trim($this->getProperty('org_id'));
+		if ($org_id) {
+			$c->where(array(
+				'`'.$this->classKey.'`.`id`' => "{$org_id}",
+			));
+		}
 		return $c;
 	}
 

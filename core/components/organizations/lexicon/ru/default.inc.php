@@ -32,6 +32,7 @@ $_lang['organizations_grid_kpp'] = 'КПП';
 
 $_lang['organizations_grid_org_search'] = 'Поиск по имени, инн, скидке и менеджеру';
 $_lang['organizations_grid_user_search'] = 'Поиск по имени, скидке и менеджеру';
+$_lang['organizations_grid_org_id_search'] = 'Поиск id орг';
 
 $_lang['organizations_org_create'] = 'Добавить Организацию';
 $_lang['organizations_org_update'] = 'Изменить Организацию';
