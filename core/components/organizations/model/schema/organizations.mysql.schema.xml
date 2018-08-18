@@ -35,11 +35,27 @@
 		<field key="manager_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
 		<field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
 
+		<field key="ext_int_1" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
+		<field key="ext_int_2" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
+		<field key="ext_varchar_1" dbtype="text" precision="300" phptype="text" null="false" default=""/>
+		<field key="ext_varchar_2" dbtype="text" precision="300" phptype="text" null="false" default=""/>
+		<field key="ext_varchar_3" dbtype="text" precision="300" phptype="text" null="false" default=""/>
+		<field key="ext_varchar_4" dbtype="text" precision="300" phptype="text" null="false" default=""/>
+		<field key="ext_varchar_5" dbtype="text" precision="300" phptype="text" null="false" default=""/>
+		<field key="ext_text_1" dbtype="text" phptype="text" null="false" default=""/>
+		<field key="ext_text_2" dbtype="text" phptype="text" null="false" default=""/>
+		
 		<index alias="shortname" name="shortname" primary="false" unique="false" type="BTREE">
 			<column key="shortname" length="" collation="A" null="false"/>
 		</index>
 		<index alias="inn" name="inn" primary="false" unique="false" type="BTREE">
 			<column key="inn" length="" collation="A" null="false"/>
+		</index>
+		<index alias="ext_int_1" name="ext_int_1" primary="false" unique="false" type="BTREE">
+			<column key="ext_int_1" length="" collation="A" null="false"/>
+		</index>
+		<index alias="ext_int_2" name="ext_int_2" primary="false" unique="false" type="BTREE">
+			<column key="ext_int_2" length="" collation="A" null="false"/>
 		</index>
 		<index alias="active" name="active" primary="false" unique="false" type="BTREE">
 			<column key="active" length="" collation="A" null="false"/>

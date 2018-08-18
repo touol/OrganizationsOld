@@ -37,6 +37,15 @@ $xpdo_meta_map['Orgs']= array (
     'discount' => 0,
     'manager_id' => 0,
     'active' => 1,
+    'ext_int_1' => 0,
+    'ext_int_2' => 0,
+    'ext_varchar_1' => '',
+    'ext_varchar_2' => '',
+    'ext_varchar_3' => '',
+    'ext_varchar_4' => '',
+    'ext_varchar_5' => '',
+    'ext_text_1' => '',
+    'ext_text_2' => '',
   ),
   'fieldMeta' => 
   array (
@@ -253,6 +262,78 @@ $xpdo_meta_map['Orgs']= array (
       'null' => true,
       'default' => 1,
     ),
+    'ext_int_1' => 
+    array (
+      'dbtype' => 'int',
+      'precision' => '10',
+      'phptype' => 'integer',
+      'attributes' => 'unsigned',
+      'null' => true,
+      'default' => 0,
+    ),
+    'ext_int_2' => 
+    array (
+      'dbtype' => 'int',
+      'precision' => '10',
+      'phptype' => 'integer',
+      'attributes' => 'unsigned',
+      'null' => true,
+      'default' => 0,
+    ),
+    'ext_varchar_1' => 
+    array (
+      'dbtype' => 'text',
+      'precision' => '300',
+      'phptype' => 'text',
+      'null' => false,
+      'default' => '',
+    ),
+    'ext_varchar_2' => 
+    array (
+      'dbtype' => 'text',
+      'precision' => '300',
+      'phptype' => 'text',
+      'null' => false,
+      'default' => '',
+    ),
+    'ext_varchar_3' => 
+    array (
+      'dbtype' => 'text',
+      'precision' => '300',
+      'phptype' => 'text',
+      'null' => false,
+      'default' => '',
+    ),
+    'ext_varchar_4' => 
+    array (
+      'dbtype' => 'text',
+      'precision' => '300',
+      'phptype' => 'text',
+      'null' => false,
+      'default' => '',
+    ),
+    'ext_varchar_5' => 
+    array (
+      'dbtype' => 'text',
+      'precision' => '300',
+      'phptype' => 'text',
+      'null' => false,
+      'default' => '',
+    ),
+    'ext_text_1' => 
+    array (
+      'dbtype' => 'text',
+      'phptype' => 'text',
+      'null' => false,
+      'default' => '',
+    ),
+    'ext_text_2' => 
+    array (
+      'dbtype' => 'text',
+      'phptype' => 'text',
+      'null' => false,
+      'default' => '',
+    ),
   ),
   'indexes' => 
   array (
@@ -281,6 +362,38 @@ $xpdo_meta_map['Orgs']= array (
       'columns' => 
       array (
         'inn' => 
+        array (
+          'length' => '',
+          'collation' => 'A',
+          'null' => false,
+        ),
+      ),
+    ),
+    'ext_int_1' => 
+    array (
+      'alias' => 'ext_int_1',
+      'primary' => false,
+      'unique' => false,
+      'type' => 'BTREE',
+      'columns' => 
+      array (
+        'ext_int_1' => 
+        array (
+          'length' => '',
+          'collation' => 'A',
+          'null' => false,
+        ),
+      ),
+    ),
+    'ext_int_2' => 
+    array (
+      'alias' => 'ext_int_2',
+      'primary' => false,
+      'unique' => false,
+      'type' => 'BTREE',
+      'columns' => 
+      array (
+        'ext_int_2' => 
         array (
           'length' => '',
           'collation' => 'A',
