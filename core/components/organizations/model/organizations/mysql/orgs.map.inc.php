@@ -44,6 +44,13 @@ $xpdo_meta_map['Orgs']= array (
     'ext_varchar_3' => '',
     'ext_varchar_4' => '',
     'ext_varchar_5' => '',
+    'ext_varchar_6' => '',
+    'ext_varchar_7' => '',
+    'ext_varchar_8' => '',
+    'ext_varchar_9' => '',
+    'ext_varchar_10' => '',
+    'ext_varchar_11' => '',
+    'ext_varchar_12' => '',
     'ext_text_1' => '',
     'ext_text_2' => '',
   ),
@@ -313,6 +320,62 @@ $xpdo_meta_map['Orgs']= array (
       'default' => '',
     ),
     'ext_varchar_5' => 
+    array (
+      'dbtype' => 'text',
+      'precision' => '300',
+      'phptype' => 'text',
+      'null' => false,
+      'default' => '',
+    ),
+    'ext_varchar_6' => 
+    array (
+      'dbtype' => 'text',
+      'precision' => '300',
+      'phptype' => 'text',
+      'null' => false,
+      'default' => '',
+    ),
+    'ext_varchar_7' => 
+    array (
+      'dbtype' => 'text',
+      'precision' => '300',
+      'phptype' => 'text',
+      'null' => false,
+      'default' => '',
+    ),
+    'ext_varchar_8' => 
+    array (
+      'dbtype' => 'text',
+      'precision' => '300',
+      'phptype' => 'text',
+      'null' => false,
+      'default' => '',
+    ),
+    'ext_varchar_9' => 
+    array (
+      'dbtype' => 'text',
+      'precision' => '300',
+      'phptype' => 'text',
+      'null' => false,
+      'default' => '',
+    ),
+    'ext_varchar_10' => 
+    array (
+      'dbtype' => 'text',
+      'precision' => '300',
+      'phptype' => 'text',
+      'null' => false,
+      'default' => '',
+    ),
+    'ext_varchar_11' => 
+    array (
+      'dbtype' => 'text',
+      'precision' => '300',
+      'phptype' => 'text',
+      'null' => false,
+      'default' => '',
+    ),
+    'ext_varchar_12' => 
     array (
       'dbtype' => 'text',
       'precision' => '300',

@@ -42,6 +42,13 @@
 		<field key="ext_varchar_3" dbtype="text" precision="300" phptype="text" null="false" default=""/>
 		<field key="ext_varchar_4" dbtype="text" precision="300" phptype="text" null="false" default=""/>
 		<field key="ext_varchar_5" dbtype="text" precision="300" phptype="text" null="false" default=""/>
+		<field key="ext_varchar_6" dbtype="text" precision="300" phptype="text" null="false" default=""/>
+		<field key="ext_varchar_7" dbtype="text" precision="300" phptype="text" null="false" default=""/>
+		<field key="ext_varchar_8" dbtype="text" precision="300" phptype="text" null="false" default=""/>
+		<field key="ext_varchar_9" dbtype="text" precision="300" phptype="text" null="false" default=""/>
+		<field key="ext_varchar_10" dbtype="text" precision="300" phptype="text" null="false" default=""/>
+		<field key="ext_varchar_11" dbtype="text" precision="300" phptype="text" null="false" default=""/>
+		<field key="ext_varchar_12" dbtype="text" precision="300" phptype="text" null="false" default=""/>
 		<field key="ext_text_1" dbtype="text" phptype="text" null="false" default=""/>
 		<field key="ext_text_2" dbtype="text" phptype="text" null="false" default=""/>
 		

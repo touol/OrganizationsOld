@@ -59,6 +59,7 @@ Organizations.grid.Fields = function (config) {
 		paging: true,
 		remoteSort: true,
 		autoHeight: true,
+		pageSize: 100,
 	});
 	Organizations.grid.Fields.superclass.constructor.call(this, config);
 

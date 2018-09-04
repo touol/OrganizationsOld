@@ -275,7 +275,7 @@ if ($object->xpdo) {
 					  ),
 					  26 => 
 					  array (
-						'id' => 19,
+						'id' => 40,
 						'name' => 'ext_int_1',
 						'label' => 'ext_int_1',
 						'rank' => '31',
@@ -285,7 +285,7 @@ if ($object->xpdo) {
 					  ),
 					  27 => 
 					  array (
-						'id' => 20,
+						'id' => 41,
 						'name' => 'ext_int_2',
 						'label' => 'ext_int_2',
 						'rank' => '32',
@@ -295,7 +295,7 @@ if ($object->xpdo) {
 					  ),
 					  28 => 
 					  array (
-						'id' => 21,
+						'id' => 42,
 						'name' => 'ext_varchar_1',
 						'label' => 'ext_varchar_1',
 						'rank' => '33',
@@ -305,7 +305,7 @@ if ($object->xpdo) {
 					  ),
 					  29 => 
 					  array (
-						'id' => 22,
+						'id' => 43,
 						'name' => 'ext_varchar_2',
 						'label' => 'ext_varchar_2',
 						'rank' => '34',
@@ -315,7 +315,7 @@ if ($object->xpdo) {
 					  ),
 					  30 => 
 					  array (
-						'id' => 23,
+						'id' => 44,
 						'name' => 'ext_varchar_3',
 						'label' => 'ext_varchar_3',
 						'rank' => '35',
@@ -325,7 +325,7 @@ if ($object->xpdo) {
 					  ),
 					  31 => 
 					  array (
-						'id' => 24,
+						'id' => 45,
 						'name' => 'ext_varchar_4',
 						'label' => 'ext_varchar_4',
 						'rank' => '36',
@@ -335,7 +335,7 @@ if ($object->xpdo) {
 					  ),
 					  32 => 
 					  array (
-						'id' => 25,
+						'id' => 46,
 						'name' => 'ext_varchar_5',
 						'label' => 'ext_varchar_5',
 						'rank' => '37',
@@ -345,20 +345,90 @@ if ($object->xpdo) {
 					  ),
 					  33 => 
 					  array (
-						'id' => 26,
-						'name' => 'ext_text_1',
-						'label' => 'ext_text_1',
+						'id' => 47,
+						'name' => 'ext_varchar_6',
+						'label' => 'ext_varchar_6',
 						'rank' => '38',
-						'xtype' => 'textarea',
+						'xtype' => 'textfield',
 						'column' => '2',
 						'active' => false,
 					  ),
 					  34 => 
 					  array (
-						'id' => 27,
+						'id' => 48,
+						'name' => 'ext_varchar_7',
+						'label' => 'ext_varchar_7',
+						'rank' => '39',
+						'xtype' => 'textfield',
+						'column' => '2',
+						'active' => false,
+					  ),
+					  35 => 
+					  array (
+						'id' => 49,
+						'name' => 'ext_varchar_8',
+						'label' => 'ext_varchar_8',
+						'rank' => '40',
+						'xtype' => 'textfield',
+						'column' => '2',
+						'active' => false,
+					  ),
+					  36 => 
+					  array (
+						'id' => 50,
+						'name' => 'ext_varchar_9',
+						'label' => 'ext_varchar_9',
+						'rank' => '41',
+						'xtype' => 'textfield',
+						'column' => '2',
+						'active' => false,
+					  ),
+					  37 => 
+					  array (
+						'id' => 51,
+						'name' => 'ext_varchar_10',
+						'label' => 'ext_varchar_10',
+						'rank' => '42',
+						'xtype' => 'textfield',
+						'column' => '2',
+						'active' => false,
+					  ),
+					  38 => 
+					  array (
+						'id' => 52,
+						'name' => 'ext_varchar_11',
+						'label' => 'ext_varchar_11',
+						'rank' => '43',
+						'xtype' => 'textfield',
+						'column' => '2',
+						'active' => false,
+					  ),
+					  39 => 
+					  array (
+						'id' => 53,
+						'name' => 'ext_varchar_12',
+						'label' => 'ext_varchar_12',
+						'rank' => '44',
+						'xtype' => 'textfield',
+						'column' => '2',
+						'active' => false,
+					  ),
+					  40 => 
+					  array (
+						'id' => 60,
+						'name' => 'ext_text_1',
+						'label' => 'ext_text_1',
+						'rank' => '45',
+						'xtype' => 'textarea',
+						'column' => '2',
+						'active' => false,
+					  ),
+					  41 => 
+					  array (
+						'id' => 61,
 						'name' => 'ext_text_2',
 						'label' => 'ext_text_2',
-						'rank' => '39',
+						'rank' => '46',
 						'xtype' => 'textarea',
 						'column' => '2',
 						'active' => false,
@@ -436,6 +506,10 @@ if ($object->xpdo) {
 					$modx->log(modX::LOG_LEVEL_INFO, 'Updated OrgsConfig "<b>' . $id . '</b>"');
                 }
             }
+			if($config = $modx->getObject('OrgsConfig', 2)){
+				$config->value = $configs['2']['value'];
+				$config->save();
+			}
 			$groups = array (
 				1 => array (
 						  'name' => 'Администраторы',
