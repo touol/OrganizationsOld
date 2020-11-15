@@ -4,6 +4,7 @@ Organizations.grid.Orgs = function (config) {
 	if (!config.id) {
 		config.id = 'organizations-grid-orgs';
 	}
+	//console.log(Organizations.config.connector_url);
 	Ext.Ajax.request({
 			url: Organizations.config.connector_url,
 			params: {

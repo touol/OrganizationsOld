@@ -199,5 +199,34 @@ function setTypeaheadOrgs(){
 }
 $( document ).ready(function() {
     //console.log( "ready!" );
-	setTypeaheadOrgs();
+  setTypeaheadOrgs();
+  $('#statusBtn a').on('click', function(){
+      var sel = $(this).data('title');
+      var tog = $(this).data('toggle');
+      $('#'+tog).prop('value', sel);
+      
+      $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
+      $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
+      
+      if (sel == 'urlico') {
+          $('.urlico-block').fadeIn('fast');
+          $('.fizlico-block').fadeOut('fast')
+      }
+      else {
+          $('.urlico-block').fadeOut('fast');
+          $('.fizlico-block').fadeIn('fast');
+      }
+  });
+  if($('#lico').val() ==''){
+      $('#lico').prop('value', 'urlico');
+  }else if($('#lico').val() =='fizlico'){
+      $('#statusBtn a').trigger('click');
+  }
+  
+  $('#username').change(function() { 
+    if(this.value.indexOf('"') > -1){
+       alert('Логин не может содержать знак кавычки (").');
+       this.value=this.value.replace(/"/g,'');
+    }
+  });
 });

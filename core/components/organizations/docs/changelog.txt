@@ -1,4 +1,9 @@
 Changelog for Organizations.
+2.4.1-beta
+	Добавлена выгрузка организаций.
+	Исправлено phptype=text.
+	Адаптация под bootstrap 4.
+	Исправлено «modAction support is deprecated»
 2.3.2-beta
 	Добавлен поиск по id организации.
 2.3.1-beta

@@ -34,7 +34,7 @@ $xpdo_meta_map['Orgs']= array (
     'phone' => '',
     'phone_add' => '',
     'fax' => '',
-    'discount' => 0,
+    'discount' => 0.0,
     'manager_id' => 0,
     'active' => 1,
     'ext_int_1' => 0,
@@ -53,10 +53,10 @@ $xpdo_meta_map['Orgs']= array (
     'ext_varchar_12' => '',
     'ext_text_1' => '',
     'ext_text_2' => '',
-    'ext_double_1' => 0,
-    'ext_double_2' => 0,
-    'debt_beznal' => 0,
-    'debt_nal' => 0,
+    'ext_double_1' => 0.0,
+    'ext_double_2' => 0.0,
+    'debt_beznal' => 0.0,
+    'debt_nal' => 0.0,
     'op_manager_id' => NULL,
     'op_date_start' => NULL,
     'op_date_end' => NULL,
@@ -261,7 +261,7 @@ $xpdo_meta_map['Orgs']= array (
       'phptype' => 'double',
       'attributes' => 'unsigned',
       'null' => true,
-      'default' => 0,
+      'default' => 0.0,
     ),
     'manager_id' => 
     array (
@@ -413,28 +413,28 @@ $xpdo_meta_map['Orgs']= array (
       'dbtype' => 'double',
       'phptype' => 'double',
       'null' => true,
-      'default' => 0,
+      'default' => 0.0,
     ),
     'ext_double_2' => 
     array (
       'dbtype' => 'double',
       'phptype' => 'double',
       'null' => true,
-      'default' => 0,
+      'default' => 0.0,
     ),
     'debt_beznal' => 
     array (
       'dbtype' => 'double',
       'phptype' => 'double',
       'null' => true,
-      'default' => 0,
+      'default' => 0.0,
     ),
     'debt_nal' => 
     array (
       'dbtype' => 'double',
       'phptype' => 'double',
       'null' => true,
-      'default' => 0,
+      'default' => 0.0,
     ),
     'op_manager_id' => 
     array (
