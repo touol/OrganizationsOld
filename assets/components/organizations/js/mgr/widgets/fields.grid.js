@@ -128,14 +128,17 @@ Organizations.combo.Units = function(config) {
             ,fields: ['unit','display']
             ,data: [
                 ['textfield','textfield'],
+				['numberfield','numberfield'],
 				['textarea','textarea'],
 				['xcheckbox','xcheckbox'],
+				['datefield','datefield'],
 				['org-combo-dadata','org-combo-dadata'],
 				['bank-combo-dadata','bank-combo-dadata'],
 				['fio-combo-dadata','fio-combo-dadata'],
 				['addr-combo-dadata','addr-combo-dadata'],
 				['email-combo-dadata','email-combo-dadata'],
-				['manager-combo','manager-combo']
+				['manager-combo','manager-combo'],
+				['op-manager-combo','op-manager-combo']
             ]
         })
         ,mode: 'local'

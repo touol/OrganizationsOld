@@ -433,6 +433,116 @@ if ($object->xpdo) {
 						'column' => '2',
 						'active' => false,
 					  ),
+					  42 => 
+					  array (
+						'id' => 80,
+						'name' => 'ext_double_1',
+						'label' => 'ext_double_1',
+						'rank' => '47',
+						'xtype' => 'textfield',
+						'column' => '3',
+						'active' => false,
+					  ),
+					  43 => 
+					  array (
+						'id' => 81,
+						'name' => 'ext_double_2',
+						'label' => 'ext_double_2',
+						'rank' => '48',
+						'xtype' => 'textfield',
+						'column' => '3',
+						'active' => false,
+					  ),
+					  44 => 
+					  array (
+						'id' => 82,
+						'name' => 'debt_beznal',
+						'label' => 'задолжность безнал',
+						'rank' => '49',
+						'xtype' => 'textfield',
+						'column' => '3',
+						'active' => false,
+					  ),
+					  45 => 
+					  array (
+						'id' => 83,
+						'name' => 'debt_nal',
+						'label' => 'задолжность  нал',
+						'rank' => '50',
+						'xtype' => 'textfield',
+						'column' => '3',
+						'active' => false,
+					  ),
+					  46 => 
+					  array (
+						'id' => 90,
+						'name' => 'op_manager_id',
+						'label' => 'Менеджер ОП',
+						'rank' => '51',
+						'xtype' => 'op-manager-combo',
+						'column' => '1',
+						'active' => true,
+					  ),
+					  47 => 
+					  array (
+						'id' => 91,
+						'name' => 'op_date_start',
+						'label' => 'МОП дата старт',
+						'rank' => '52',
+						'xtype' => 'datefield',
+						'column' => '1',
+						'active' => true,
+					  ),
+					  48 => 
+					  array (
+						'id' => 92,
+						'name' => 'op_date_end',
+						'label' => 'МОП дата конец',
+						'rank' => '53',
+						'xtype' => 'datefield',
+						'column' => '1',
+						'active' => true,
+					  ),
+					  49 =>
+					  array (
+						'id' => 100,
+						'name' => 'zhuki',
+						'label' => 'Жуки',
+						'rank' => '54',
+						'xtype' => 'textfield',
+						'column' => '2',
+						'active' => true,
+					  ),
+					  50 => 
+					  array (
+						'id' => 101,
+						'name' => 'zhuki_proc',
+						'label' => 'Жуки процент',
+						'rank' => '55',
+						'xtype' => 'textfield',
+						'column' => '2',
+						'active' => true,
+					  ),
+					  51 => 
+					  array (
+						'id' => 102,
+						'name' => 'zhuki_date_start',
+						'label' => 'Жуки дата старт',
+						'rank' => '56',
+						'xtype' => 'datefield',
+						'column' => '2',
+						'active' => true,
+					  ),
+					  52 => 
+					  array (
+						'id' => 103,
+						'name' => 'zhuki_date_end',
+						'label' => 'Жуки дата конец',
+						'rank' => '57',
+						'xtype' => 'datefield',
+						'column' => '2',
+						'active' => true,
+					  ),
 					);
 			$val2 = array (
 				  0 => 
@@ -499,17 +609,31 @@ if ($object->xpdo) {
                 ),
             );
             foreach ($configs as $id => $properties) {
-                if (!$config = $modx->getCount('OrgsConfig', array('id' => $id))) {
+                if (!$config = $modx->getCount('OrgsConfig', array('setting' => $properties['setting']))) {
                     $config = $modx->newObject('OrgsConfig', $properties);
-                    $config->set('id', $id);
+                    //$config->set('id', $id);
                     $config->save();
-					$modx->log(modX::LOG_LEVEL_INFO, 'Updated OrgsConfig "<b>' . $id . '</b>"');
-                }
+					$modx->log(modX::LOG_LEVEL_INFO, 'New OrgsConfig "<b>' . $properties['setting'] . '</b>"');
+                }else{
+					if($config = $modx->getObject('OrgsConfig', array('setting' => $properties['setting']))){
+						$old_config = json_decode($config->value,1);
+						$new_config = json_decode($properties['value'],1);
+						foreach($new_config as $k=>$new_v){
+							foreach($old_config as $old_v){
+								if($new_v['id'] == $old_v['id']){
+									$new_config[$k] = $old_v;
+								}
+							}
+						}
+						$config->value = json_encode($new_config);
+						$config->save();
+					}
+				}
             }
-			if($config = $modx->getObject('OrgsConfig', 2)){
+			/*if($config = $modx->getObject('OrgsConfig', 2)){
 				$config->value = $configs['2']['value'];
 				$config->save();
-			}
+			}*/
 			$groups = array (
 				1 => array (
 						  'name' => 'Администраторы',

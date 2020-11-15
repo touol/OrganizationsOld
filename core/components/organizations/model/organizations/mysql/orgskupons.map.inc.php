@@ -31,13 +31,13 @@ $xpdo_meta_map['OrgsKupons']= array (
     array (
       'dbtype' => 'varchar',
       'precision' => '120',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
     ),
     'description' => 
     array (
       'dbtype' => 'text',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => true,
       'default' => '',
     ),

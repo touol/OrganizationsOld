@@ -53,6 +53,17 @@ $xpdo_meta_map['Orgs']= array (
     'ext_varchar_12' => '',
     'ext_text_1' => '',
     'ext_text_2' => '',
+    'ext_double_1' => 0,
+    'ext_double_2' => 0,
+    'debt_beznal' => 0,
+    'debt_nal' => 0,
+    'op_manager_id' => NULL,
+    'op_date_start' => NULL,
+    'op_date_end' => NULL,
+    'zhuki' => '',
+    'zhuki_proc' => '',
+    'zhuki_date_start' => NULL,
+    'zhuki_date_end' => NULL,
   ),
   'fieldMeta' => 
   array (
@@ -68,7 +79,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'varchar',
       'precision' => '255',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -76,14 +87,14 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '255',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
     'description' => 
     array (
       'dbtype' => 'text',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => true,
       'default' => '',
     ),
@@ -91,7 +102,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'varchar',
       'precision' => '12',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -99,7 +110,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'varchar',
       'precision' => '9',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -107,7 +118,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'varchar',
       'precision' => '13',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -115,21 +126,21 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'varchar',
       'precision' => '10',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
     'ur_address' => 
     array (
       'dbtype' => 'text',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
     'postal_address' => 
     array (
       'dbtype' => 'text',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -137,7 +148,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '300',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -145,7 +156,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'varchar',
       'precision' => '9',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -153,7 +164,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '300',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -161,7 +172,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '300',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -169,7 +180,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '300',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -177,7 +188,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '300',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -185,7 +196,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '300',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -193,7 +204,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '300',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -201,7 +212,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '300',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -209,7 +220,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '255',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -217,7 +228,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '255',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -225,14 +236,14 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '255',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
     'phone_add' => 
     array (
       'dbtype' => 'text',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -240,7 +251,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '255',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -291,7 +302,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '300',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -299,7 +310,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '300',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -307,7 +318,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '300',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -315,7 +326,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '300',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -323,7 +334,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '300',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -331,7 +342,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '300',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -339,7 +350,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '300',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -347,7 +358,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '300',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -355,7 +366,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '300',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -363,7 +374,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '300',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -371,7 +382,7 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '300',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -379,23 +390,98 @@ $xpdo_meta_map['Orgs']= array (
     array (
       'dbtype' => 'text',
       'precision' => '300',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
     'ext_text_1' => 
     array (
       'dbtype' => 'text',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
     'ext_text_2' => 
     array (
       'dbtype' => 'text',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
+    ),
+    'ext_double_1' => 
+    array (
+      'dbtype' => 'double',
+      'phptype' => 'double',
+      'null' => true,
+      'default' => 0,
+    ),
+    'ext_double_2' => 
+    array (
+      'dbtype' => 'double',
+      'phptype' => 'double',
+      'null' => true,
+      'default' => 0,
+    ),
+    'debt_beznal' => 
+    array (
+      'dbtype' => 'double',
+      'phptype' => 'double',
+      'null' => true,
+      'default' => 0,
+    ),
+    'debt_nal' => 
+    array (
+      'dbtype' => 'double',
+      'phptype' => 'double',
+      'null' => true,
+      'default' => 0,
+    ),
+    'op_manager_id' => 
+    array (
+      'dbtype' => 'int',
+      'precision' => '10',
+      'phptype' => 'integer',
+      'null' => true,
+    ),
+    'op_date_start' => 
+    array (
+      'dbtype' => 'date',
+      'phptype' => 'date',
+      'null' => true,
+    ),
+    'op_date_end' => 
+    array (
+      'dbtype' => 'date',
+      'phptype' => 'date',
+      'null' => true,
+    ),
+    'zhuki' => 
+    array (
+      'dbtype' => 'text',
+      'precision' => '300',
+      'phptype' => 'string',
+      'null' => false,
+      'default' => '',
+    ),
+    'zhuki_proc' => 
+    array (
+      'dbtype' => 'text',
+      'precision' => '10',
+      'phptype' => 'string',
+      'null' => false,
+      'default' => '',
+    ),
+    'zhuki_date_start' => 
+    array (
+      'dbtype' => 'date',
+      'phptype' => 'date',
+      'null' => true,
+    ),
+    'zhuki_date_end' => 
+    array (
+      'dbtype' => 'date',
+      'phptype' => 'date',
+      'null' => true,
     ),
   ),
   'indexes' => 

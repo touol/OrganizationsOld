@@ -540,6 +540,25 @@ Organizations.combo.Manager = function(config) {
 Ext.extend(Organizations.combo.Manager ,Organizations.combo.Dadata);
 Ext.reg('manager-combo',Organizations.combo.Manager);
 
+Organizations.combo.OPManager = function(config) {
+    config = config || {};
+    Ext.applyIf(config,{
+		baseParams:{
+            action: 'mgr/users/getuser',
+			group: 'manager',
+        },
+		hideTrigger: false,
+		fields: ['id' , 'username', 'search'],
+		displayField: 'search',
+		valueField: 'id',
+		hiddenName:'op_manager_id',
+		hiddenValue: '',
+    });
+    Organizations.combo.OPManager.superclass.constructor.call(this,config);
+};
+Ext.extend(Organizations.combo.OPManager ,Organizations.combo.Dadata);
+Ext.reg('op-manager-combo',Organizations.combo.OPManager);
+
 Organizations.combo.Org = function(config) {
     config = config || {};
     Ext.applyIf(config,{

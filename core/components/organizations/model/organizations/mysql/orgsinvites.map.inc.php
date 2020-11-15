@@ -32,14 +32,14 @@ $xpdo_meta_map['OrgsInvites']= array (
     array (
       'dbtype' => 'varchar',
       'precision' => '120',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'unique' => 'true',
     ),
     'description' => 
     array (
       'dbtype' => 'text',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => true,
       'default' => '',
     ),
@@ -74,7 +74,7 @@ $xpdo_meta_map['OrgsInvites']= array (
     array (
       'dbtype' => 'text',
       'precision' => '255',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -90,7 +90,7 @@ $xpdo_meta_map['OrgsInvites']= array (
     array (
       'dbtype' => 'text',
       'precision' => '255',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),

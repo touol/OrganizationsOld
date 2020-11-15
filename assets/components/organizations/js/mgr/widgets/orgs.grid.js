@@ -354,6 +354,14 @@ Ext.extend(Organizations.grid.Orgs, MODx.grid.Grid, {
 			text: '<i class="icon icon-plus"></i>&nbsp;' + _('organizations_org_create'),
 			handler: this.createOrg,
 			scope: this
+		},{
+            text: _('organizations_org_clean'),
+            handler: this.cleanOrg,
+            scope: this
+        },{
+			text: _('organizations_org_export'),
+            handler: this._exportExcel,
+            scope: this
 		}, '->', {
 			xtype: 'textfield',
 			name: 'query',
@@ -393,7 +401,30 @@ Ext.extend(Organizations.grid.Orgs, MODx.grid.Grid, {
 			}
 		}];
 	},
-
+	
+	_exportExcel: function (tf) {
+		query = Ext.getCmp(this.config.id + '-search-field').getValue();
+		url ='/assets/components/organizations/export_org.php?query=' + query;
+		window.open(url, '_blank');
+	},
+	
+	cleanOrg: function (btn, e) {
+		var w = MODx.load({
+            xtype: 'organizations-window-cleanorg',
+            id: Ext.id(),
+            listeners: {
+                success: {
+                    fn: function () {
+                        this.refresh();
+                    }, scope: this
+                }
+            }
+        });
+        w.reset();
+        w.setValues({url_scheme:"http"});
+        w.show(e.target);
+    },
+	
 	onClick: function (e) {
 		var elem = e.getTarget();
 		if (elem.nodeName == 'BUTTON') {
@@ -451,3 +482,90 @@ Ext.extend(Organizations.grid.Orgs, MODx.grid.Grid, {
 	}
 });
 Ext.reg('organizations-grid-orgs', Organizations.grid.Orgs);
+
+Organizations.window.CleanOrg = function (config) {
+    config = config || {};
+    if (!config.id) {
+        config.id = 'organizations-window-cleanorg';
+    }
+    Ext.applyIf(config, {
+        title: _('organizations_org_clean'),
+        width: 550,
+        autoHeight: true,
+        url: Organizations.config.connector_url,
+        fields: this.getFields(config),
+		buttons: [{
+            text: config.cancelBtnText || _('cancel')
+            ,scope: this
+            ,handler: function() { this.hide(); }
+        },{
+            text: _('organizations_org_clean')
+            ,cls: 'primary-button'
+            ,scope: this
+            ,handler: function() { this.cleanOrg();}
+        }]
+    });
+    Organizations.window.CleanOrg.superclass.constructor.call(this, config);
+};
+Ext.extend(Organizations.window.CleanOrg, MODx.Window, {
+
+    getFields: function (config) {
+        return [{
+			xtype: 'xcheckbox',
+            boxLabel: _('organizations_cleanorg_remove_users'),
+            name: 'remove_users',
+            id: config.id + '-remove_users',
+            checked: false,
+		}, {
+			xtype: 'modx-combo-browser',
+			fieldLabel: _('organizations_cleanorg_excel_file'),
+			name: 'excel_file',
+			id: config.id + '-excel_file',
+			hideFiles: true,
+			source: MODx.config.default_media_source,
+			hideSourceCombo: true,
+			anchor: '99%'
+        }];
+    },
+	
+	cleanOrg: function () {
+		var topic = '/organizations/';
+		var register = 'mgr';
+		this.console = MODx.load({
+		   xtype: 'modx-console'
+		   ,register: register
+		   ,topic: topic
+		   ,show_filename: 0
+		   ,listeners: {
+			 'shutdown': {fn:function() {
+				 Ext.getCmp('organizations-grid-orgs').refresh();
+			 },scope:this}
+		   }
+		});
+		this.console.show(Ext.getBody());
+		
+		var excel_file = Ext.getCmp(this.config.id + '-excel_file').getValue();
+		var remove_users = Ext.getCmp(this.config.id + '-remove_users').getValue();
+		MODx.Ajax.request({
+			url: this.config.url
+			,params: {
+				action: 'mgr/orgs/cleanorg'
+				,register: register
+				,topic: topic
+				,excel_file: excel_file
+				,remove_users: remove_users
+			}
+			,listeners: {
+				'success':{fn:function() {
+					this.console.fireEvent('complete');
+				},scope:this}
+			}
+		});
+		this.hide();
+    },
+	
+    loadDropZones: function () {
+    }
+
+});
+Ext.reg('organizations-window-cleanorg', Organizations.window.CleanOrg);

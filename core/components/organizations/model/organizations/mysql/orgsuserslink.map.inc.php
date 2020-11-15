@@ -38,7 +38,7 @@ $xpdo_meta_map['OrgsUsersLink']= array (
     array (
       'dbtype' => 'text',
       'precision' => '255',
-      'phptype' => 'text',
+      'phptype' => 'string',
       'null' => true,
       'default' => '',
     ),

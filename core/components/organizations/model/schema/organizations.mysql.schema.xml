@@ -8,49 +8,63 @@
 	</object>
 	<object class="Orgs" table="orgs" extends="xPDOSimpleObject">
 		<field key="urlico" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
-		<field key="shortname" dbtype="varchar" precision="255" phptype="text" null="false" default=""/>
-		<field key="longname" dbtype="text" precision="255" phptype="text" null="false" default=""/>
-		<field key="description" dbtype="text" phptype="text" null="true" default=""/>
-		<field key="inn" dbtype="varchar" precision="12" phptype="text" null="false" default="" />
-		<field key="kpp" dbtype="varchar" precision="9" phptype="text" null="false" default="" />
-		<field key="ogrn" dbtype="varchar" precision="13" phptype="text" null="false" default="" />
-		<field key="okpo" dbtype="varchar" precision="10" phptype="text" null="false" default="" />
-		<field key="ur_address" dbtype="text" phptype="text" null="false" default=""/>
-		<field key="postal_address" dbtype="text" phptype="text" null="false" default=""/>
-		<field key="bank_name" dbtype="text" precision="300" phptype="text" null="false" default=""/>
-		<field key="bank_bik" dbtype="varchar" precision="9" phptype="text" null="false" default=""/>
-		<field key="bank_sity" dbtype="text" precision="300" phptype="text" null="false" default=""/>
-		<field key="bank_rasch_acc" dbtype="text" precision="300" phptype="text" null="false" default=""/>
-		<field key="bank_kor_acc" dbtype="text" precision="300" phptype="text" null="false" default=""/>
-		<field key="logotip" dbtype="text" precision="300" phptype="text" null="false" default=""/>
-		<field key="director" dbtype="text" precision="300" phptype="text" null="false" default=""/>
-		<field key="glav_buh" dbtype="text" precision="300" phptype="text" null="false" default=""/>
-		<field key="kontragent" dbtype="text" precision="300" phptype="text" null="false" default=""/>
-		<field key="email" dbtype="text" precision="255" phptype="text" null="false" default=""/>
-		<field key="site" dbtype="text" precision="255" phptype="text" null="false" default=""/>
-		<field key="phone" dbtype="text" precision="255" phptype="text" null="false" default=""/>
-		<field key="phone_add" dbtype="text" phptype="text" null="false" default=""/>
-		<field key="fax" dbtype="text" precision="255" phptype="text" null="false" default=""/>
+		<field key="shortname" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
+		<field key="longname" dbtype="text" precision="255" phptype="string" null="false" default=""/>
+		<field key="description" dbtype="text" phptype="string" null="true" default=""/>
+		<field key="inn" dbtype="varchar" precision="12" phptype="string" null="false" default="" />
+		<field key="kpp" dbtype="varchar" precision="9" phptype="string" null="false" default="" />
+		<field key="ogrn" dbtype="varchar" precision="13" phptype="string" null="false" default="" />
+		<field key="okpo" dbtype="varchar" precision="10" phptype="string" null="false" default="" />
+		<field key="ur_address" dbtype="text" phptype="string" null="false" default=""/>
+		<field key="postal_address" dbtype="text" phptype="string" null="false" default=""/>
+		<field key="bank_name" dbtype="text" precision="300" phptype="string" null="false" default=""/>
+		<field key="bank_bik" dbtype="varchar" precision="9" phptype="string" null="false" default=""/>
+		<field key="bank_sity" dbtype="text" precision="300" phptype="string" null="false" default=""/>
+		<field key="bank_rasch_acc" dbtype="text" precision="300" phptype="string" null="false" default=""/>
+		<field key="bank_kor_acc" dbtype="text" precision="300" phptype="string" null="false" default=""/>
+		<field key="logotip" dbtype="text" precision="300" phptype="string" null="false" default=""/>
+		<field key="director" dbtype="text" precision="300" phptype="string" null="false" default=""/>
+		<field key="glav_buh" dbtype="text" precision="300" phptype="string" null="false" default=""/>
+		<field key="kontragent" dbtype="text" precision="300" phptype="string" null="false" default=""/>
+		<field key="email" dbtype="text" precision="255" phptype="string" null="false" default=""/>
+		<field key="site" dbtype="text" precision="255" phptype="string" null="false" default=""/>
+		<field key="phone" dbtype="text" precision="255" phptype="string" null="false" default=""/>
+		<field key="phone_add" dbtype="text" phptype="string" null="false" default=""/>
+		<field key="fax" dbtype="text" precision="255" phptype="string" null="false" default=""/>
 		<field key="discount" dbtype="double" phptype="double" attributes="unsigned" null="true" default="0" />
 		<field key="manager_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
 		<field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
 
 		<field key="ext_int_1" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
 		<field key="ext_int_2" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
-		<field key="ext_varchar_1" dbtype="text" precision="300" phptype="text" null="false" default=""/>
-		<field key="ext_varchar_2" dbtype="text" precision="300" phptype="text" null="false" default=""/>
-		<field key="ext_varchar_3" dbtype="text" precision="300" phptype="text" null="false" default=""/>
-		<field key="ext_varchar_4" dbtype="text" precision="300" phptype="text" null="false" default=""/>
-		<field key="ext_varchar_5" dbtype="text" precision="300" phptype="text" null="false" default=""/>
-		<field key="ext_varchar_6" dbtype="text" precision="300" phptype="text" null="false" default=""/>
-		<field key="ext_varchar_7" dbtype="text" precision="300" phptype="text" null="false" default=""/>
-		<field key="ext_varchar_8" dbtype="text" precision="300" phptype="text" null="false" default=""/>
-		<field key="ext_varchar_9" dbtype="text" precision="300" phptype="text" null="false" default=""/>
-		<field key="ext_varchar_10" dbtype="text" precision="300" phptype="text" null="false" default=""/>
-		<field key="ext_varchar_11" dbtype="text" precision="300" phptype="text" null="false" default=""/>
-		<field key="ext_varchar_12" dbtype="text" precision="300" phptype="text" null="false" default=""/>
-		<field key="ext_text_1" dbtype="text" phptype="text" null="false" default=""/>
-		<field key="ext_text_2" dbtype="text" phptype="text" null="false" default=""/>
+		<field key="ext_varchar_1" dbtype="text" precision="300" phptype="string" null="false" default=""/>
+		<field key="ext_varchar_2" dbtype="text" precision="300" phptype="string" null="false" default=""/>
+		<field key="ext_varchar_3" dbtype="text" precision="300" phptype="string" null="false" default=""/>
+		<field key="ext_varchar_4" dbtype="text" precision="300" phptype="string" null="false" default=""/>
+		<field key="ext_varchar_5" dbtype="text" precision="300" phptype="string" null="false" default=""/>
+		<field key="ext_varchar_6" dbtype="text" precision="300" phptype="string" null="false" default=""/>
+		<field key="ext_varchar_7" dbtype="text" precision="300" phptype="string" null="false" default=""/>
+		<field key="ext_varchar_8" dbtype="text" precision="300" phptype="string" null="false" default=""/>
+		<field key="ext_varchar_9" dbtype="text" precision="300" phptype="string" null="false" default=""/>
+		<field key="ext_varchar_10" dbtype="text" precision="300" phptype="string" null="false" default=""/>
+		<field key="ext_varchar_11" dbtype="text" precision="300" phptype="string" null="false" default=""/>
+		<field key="ext_varchar_12" dbtype="text" precision="300" phptype="string" null="false" default=""/>
+		<field key="ext_text_1" dbtype="text" phptype="string" null="false" default=""/>
+		<field key="ext_text_2" dbtype="text" phptype="string" null="false" default=""/>
+		
+		<field key="ext_double_1" dbtype="double" phptype="double" null="true" default="0" />
+		<field key="ext_double_2" dbtype="double" phptype="double" null="true" default="0" />
+		<field key="debt_beznal" dbtype="double" phptype="double" null="true" default="0" />
+		<field key="debt_nal" dbtype="double" phptype="double" null="true" default="0" />
+		
+		<field key="op_manager_id" dbtype="int" precision="10" phptype="integer" null="true"/>
+		<field key="op_date_start" dbtype="date" phptype="date" null="true" />
+		<field key="op_date_end" dbtype="date" phptype="date" null="true"/>
+		
+		<field key="zhuki" dbtype="text" precision="300" phptype="string" null="false" default=""/>
+		<field key="zhuki_proc" dbtype="text" precision="10" phptype="string" null="false" default=""/>
+		<field key="zhuki_date_start" dbtype="date" phptype="date" null="true" />
+		<field key="zhuki_date_end" dbtype="date" phptype="date" null="true"/>
 		
 		<index alias="shortname" name="shortname" primary="false" unique="false" type="BTREE">
 			<column key="shortname" length="" collation="A" null="false"/>
@@ -73,7 +87,7 @@
 	<object class="OrgsUsersLink" table="orgs_users_link" extends="xPDOSimpleObject">
 		<field key="org_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false"  />
 		<field key="user_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false"  />
-		<field key="appointment" dbtype="text" precision="255" phptype="text" null="true" default=""/>
+		<field key="appointment" dbtype="text" precision="255" phptype="string" null="true" default=""/>
 		<field key="user_group_id" dbtype="int" precision="6" phptype="integer" attributes="unsigned" null="true" default="0" />
 		<field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
 
@@ -102,22 +116,22 @@
 		<aggregate alias="User" class="modUser" local="user_id" foreign="id" cardinality="one" owner="foreign" />
 	</object>
 	<object class="OrgsUsersGroups" table="orgs_users_groups" extends="xPDOSimpleObject">
-		<field key="name" dbtype="varchar" precision="120" phptype="text" null="false" default="" />
-		<field key="description" dbtype="text" phptype="text" null="true" default=""/>
-		<field key="data" dbtype="text" phptype="text" null="true" default=""/>
+		<field key="name" dbtype="varchar" precision="120" phptype="string" null="false" default="" />
+		<field key="description" dbtype="text" phptype="string" null="true" default=""/>
+		<field key="data" dbtype="text" phptype="string" null="true" default=""/>
 		<index alias="name" name="name" primary="false" unique="false" type="BTREE">
 			<column key="name" length="" collation="A" null="false"/>
 		</index>
 	</object>
 	<object class="OrgsInvites" table="orgs_invites" extends="xPDOSimpleObject">
-		<field key="invite_code" dbtype="varchar" precision="120" phptype="text" null="false" unique="true" />
-		<field key="description" dbtype="text" phptype="text" null="true" default=""/>
+		<field key="invite_code" dbtype="varchar" precision="120" phptype="string" null="false" unique="true" />
+		<field key="description" dbtype="text" phptype="string" null="true" default=""/>
 		<field key="type" dbtype="int" precision="2" phptype="integer" attributes="unsigned" null="true" default="0" />
 		<field key="org_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0"  />
 		<field key="user_group_id" dbtype="int" precision="6" phptype="integer" attributes="unsigned" null="true" default="0" />
-		<field key="email" dbtype="text" precision="255" phptype="text" null="false" default=""/>
+		<field key="email" dbtype="text" precision="255" phptype="string" null="false" default=""/>
 		<field key="email_sended" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="0"/>
-		<field key="fullname" dbtype="text" precision="255" phptype="text" null="false" default=""/>
+		<field key="fullname" dbtype="text" precision="255" phptype="string" null="false" default=""/>
 		<field key="kupon_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
 		<field key="createdby_user_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="true" default="0" />
 		<field key="createdon" dbtype="datetime" phptype="datetime" null="true" default="0000-00-00 00:00:00" />
@@ -131,8 +145,8 @@
 		
 	</object>
 	<object class="OrgsKupons" table="orgs_kupons" extends="xPDOSimpleObject">
-		<field key="kupon_code" dbtype="varchar" precision="120" phptype="text" null="false"  />
-		<field key="description" dbtype="text" phptype="text" null="true" default=""/>
+		<field key="kupon_code" dbtype="varchar" precision="120" phptype="string" null="false"  />
+		<field key="description" dbtype="text" phptype="string" null="true" default=""/>
 		<field key="org_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0"  />
 		<field key="user_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0"  />
 		<field key="createdby_user_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="true" default="0" />

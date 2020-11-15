@@ -194,3 +194,9 @@ $_lang['organizations_lico'] = 'Лицо';
 $_lang['organizations_urlico'] = 'Юридическое лицо';
 $_lang['organizations_fizlico'] = 'Физическое лицо';
 
+$_lang['organizations_cleanorg_excel_file'] = 'Выберете файл, в котором в первом столбце напротив организации, которую надо удалить проставлено 1';
+$_lang['organizations_org_clean'] = 'Очистка организаций';
+$_lang['organizations_org_export'] = 'Экспорт в эксель';
+$_lang['organizations_cleanorg_remove_users'] = 'Удалять пользователей организации';
+
+
