@@ -54,7 +54,7 @@ if($defaultOrg !=0){
     	    $row = array(
     	        'name' => $field['name'],
     	        'label' => $field['label'],
-    	        'value' => $org->$field['name'],
+    	        'value' => $org->{$field['name']},
     	        'xtype'=>$field['xtype']
     	        );
     	   switch($field['column']){
