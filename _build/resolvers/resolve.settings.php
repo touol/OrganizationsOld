@@ -543,6 +543,16 @@ if ($object->xpdo) {
 						'column' => '2',
 						'active' => true,
 					  ),
+					  53 => 
+					  array (
+						'id' => 104,
+						'name' => 'urlico',
+						'label' => 'Юрлицо',
+						'rank' => '3',
+						'xtype' => 'xcheckbox',
+						'active' => true,
+						'column' => '1',
+					  ),
 					);
 			$val2 = array (
 				  0 => 
