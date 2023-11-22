@@ -199,8 +199,8 @@ function setTypeaheadOrgs(){
 }
 $( document ).ready(function() {
     //console.log( "ready!" );
-  setTypeaheadOrgs();
-  $('#statusBtn a').on('click', function(){
+	setTypeaheadOrgs();
+$('#statusBtn a').on('click', function(){
       var sel = $(this).data('title');
       var tog = $(this).data('toggle');
       $('#'+tog).prop('value', sel);

@@ -1,4 +1,7 @@
 Changelog for Organizations.
+2.4.4-beta
+	Слияние веток.
+
 2.4.3-beta
 	Добавлено поле Юрлицо.
 

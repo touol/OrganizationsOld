@@ -32,8 +32,8 @@
 		<field key="phone_add" dbtype="text" phptype="string" null="false" default=""/>
 		<field key="fax" dbtype="text" precision="255" phptype="string" null="false" default=""/>
 		<field key="discount" dbtype="double" phptype="double" attributes="unsigned" null="true" default="0" />
-		<field key="manager_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
-		<field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
+		
+		
 
 		<field key="ext_int_1" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
 		<field key="ext_int_2" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
@@ -57,7 +57,14 @@
 		<field key="debt_beznal" dbtype="double" phptype="double" null="true" default="0" />
 		<field key="debt_nal" dbtype="double" phptype="double" null="true" default="0" />
 		
-		<field key="op_manager_id" dbtype="int" precision="10" phptype="integer" null="true"/>
+		<field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
+		<field key="buyer" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1" title="Покупатель"/>
+		<field key="supplier" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="0" title="Поставщик"/>
+		<field key="op" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="0" title="Отдел продаж"/>
+		<field key="manager_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" title="Менеджер Отдел сопровождения"/>
+		<field key="op_manager_id" dbtype="int" precision="10" phptype="integer" null="true" title="Менеджер Отдел продаж"/>
+		<field key="supplier_manager_id" dbtype="int" precision="10" phptype="integer" null="true" title="Менеджер Отдел снабжения"/>
+		
 		<field key="op_date_start" dbtype="date" phptype="date" null="true" />
 		<field key="op_date_end" dbtype="date" phptype="date" null="true"/>
 		
@@ -65,6 +72,8 @@
 		<field key="zhuki_proc" dbtype="text" precision="10" phptype="string" null="false" default=""/>
 		<field key="zhuki_date_start" dbtype="date" phptype="date" null="true" />
 		<field key="zhuki_date_end" dbtype="date" phptype="date" null="true"/>
+		
+		<field key="barcode_template_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="1" title="Шаблон этикеток"/>
 		
 		<index alias="shortname" name="shortname" primary="false" unique="false" type="BTREE">
 			<column key="shortname" length="" collation="A" null="false"/>
@@ -81,8 +90,54 @@
 		<index alias="active" name="active" primary="false" unique="false" type="BTREE">
 			<column key="active" length="" collation="A" null="false"/>
 		</index>
+		<index alias="barcode_template_id" name="barcode_template_id" primary="false" unique="false" type="BTREE">
+			<column key="barcode_template_id" length="" collation="A" null="false"/>
+		</index>
 		
 		<composite alias="OrgsUsersLink" class="OrgsUsersLink" local="id" foreign="org_id" cardinality="many" owner="local" />
+		<composite alias="OrgsContactLink" class="OrgsContactLink" local="id" foreign="org_id" cardinality="many" owner="local" />
+	</object>
+	<object class="OrgsContact" table="orgs_contacts" extends="xPDOSimpleObject">
+		<field key="email" dbtype="varchar" precision="120" phptype="string" null="true" default=""/>
+		<field key="name" dbtype="varchar" precision="120" phptype="string" null="true" default=""/>
+		<field key="shortname" dbtype="varchar" precision="20" phptype="string" null="false" default=""/>
+		<field key="phone" dbtype="varchar" precision="30" phptype="string" null="true" default=""/>
+		<field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="false" default="1"/>
+
+		<index alias="email" name="email" primary="false" unique="false" type="BTREE">
+			<column key="email" length="" collation="A" null="true"/>
+		</index>
+		<index alias="active" name="active" primary="false" unique="false" type="BTREE">
+			<column key="active" length="" collation="A" null="false"/>
+		</index>
+		<index alias="shortname" name="shortname" primary="false" unique="false" type="BTREE">
+			<column key="shortname" length="" collation="A" null="false"/>
+		</index>
+		<index alias="phone" name="phone" primary="false" unique="false" type="BTREE">
+			<column key="phone" length="" collation="A" null="true"/>
+		</index>
+		<composite alias="OrgsContactLink" class="OrgsContactLink" local="id" foreign="contact_id" cardinality="many" owner="local" />
+	</object>
+	<object class="OrgsContactManager" table="orgs_contact_managers" extends="xPDOSimpleObject">
+		<field key="manager_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false"  />
+		<field key="phone" dbtype="varchar" precision="12" phptype="string" null="true" default=""/>
+	</object>
+	<object class="OrgsContactLink" table="orgs_contact_links" extends="xPDOSimpleObject">
+		<field key="org_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false"  />
+		<field key="contact_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false"  />
+		<field key="default" dbtype="tinyint" precision="1" phptype="boolean" null="false" default="0"/>
+
+		<index alias="org_id" name="org_id" primary="false" unique="false" type="BTREE">
+			<column key="org_id" length="" collation="A" null="false"/>
+		</index>
+		<index alias="contact_id" name="contact_id" primary="false" unique="false" type="BTREE">
+			<column key="contact_id" length="" collation="A" null="false"/>
+		</index>
+		<index alias="default" name="default" primary="false" unique="false" type="BTREE">
+			<column key="default" length="" collation="A" null="false"/>
+		</index>
+		<aggregate alias="Orgs" class="Orgs" local="org_id" foreign="id" cardinality="one" owner="foreign" />
+		<aggregate alias="OrgsContact" class="OrgsContact" local="contact_id" foreign="id" cardinality="one" owner="foreign" />
 	</object>
 	<object class="OrgsUsersLink" table="orgs_users_link" extends="xPDOSimpleObject">
 		<field key="org_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false"  />

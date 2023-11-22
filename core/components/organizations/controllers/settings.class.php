@@ -27,7 +27,7 @@ class OrganizationsSettingsManagerController extends modExtraManagerController {
 	public function getPageTitle() {
 		return $this->modx->lexicon('organizations');
 	}
-	
+
 	/**
      * @return array
      */
@@ -42,7 +42,7 @@ class OrganizationsSettingsManagerController extends modExtraManagerController {
 	public function loadCustomCssJs() {
 		$this->addCss($this->Organizations->config['cssUrl'] . 'mgr/main.css');
 		$this->addCss($this->Organizations->config['cssUrl'] . 'mgr/bootstrap.buttons.css');
-		$this->addJavascript($this->Organizations->config['jsUrl'] . 'mgr/organizations.js');
+$this->addJavascript($this->Organizations->config['jsUrl'] . 'mgr/organizations.js');
 		$this->addJavascript($this->Organizations->config['jsUrl'] . 'mgr/misc/utils.js');
 		//$this->addJavascript($this->Organizations->config['jsUrl'] . 'mgr/widgets/orgs.grid.js');
 		$this->addJavascript($this->Organizations->config['jsUrl'] . 'mgr/widgets/fields.grid.js');
@@ -52,7 +52,7 @@ class OrganizationsSettingsManagerController extends modExtraManagerController {
 		$this->addJavascript($this->Organizations->config['jsUrl'] . 'mgr/widgets/groups.grid.js');
 		$this->addJavascript($this->Organizations->config['jsUrl'] . 'mgr/sections/settings.js');
 		$this->addHtml('<script type="text/javascript">
-		Organizations.config = ' . json_encode($this->Organizations->config) . ';
+Organizations.config = ' . json_encode($this->Organizations->config) . ';
         Organizations.config.connector_url = "' . $this->Organizations->config['connectorUrl'] . '";
 		Ext.onReady(function() {
 			MODx.load({ xtype: "organizations-page-settings"});
@@ -68,4 +68,6 @@ class OrganizationsSettingsManagerController extends modExtraManagerController {
 		$this->content .=  '<div id="organizations-panel-home-div"></div>';
         return '';
 	}
+}
+class OrganizationsMgrSettingsManagerController extends OrganizationsMainController {
 }

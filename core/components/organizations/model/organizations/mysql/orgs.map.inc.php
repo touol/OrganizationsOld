@@ -35,8 +35,6 @@ $xpdo_meta_map['Orgs']= array (
     'phone_add' => '',
     'fax' => '',
     'discount' => 0.0,
-    'manager_id' => 0,
-    'active' => 1,
     'ext_int_1' => 0,
     'ext_int_2' => 0,
     'ext_varchar_1' => '',
@@ -57,13 +55,20 @@ $xpdo_meta_map['Orgs']= array (
     'ext_double_2' => 0.0,
     'debt_beznal' => 0.0,
     'debt_nal' => 0.0,
+    'active' => 1,
+    'buyer' => 1,
+    'supplier' => 0,
+    'op' => 0,
+    'manager_id' => 0,
     'op_manager_id' => NULL,
+    'supplier_manager_id' => NULL,
     'op_date_start' => NULL,
     'op_date_end' => NULL,
     'zhuki' => '',
     'zhuki_proc' => '',
     'zhuki_date_start' => NULL,
     'zhuki_date_end' => NULL,
+    'barcode_template_id' => 1,
   ),
   'fieldMeta' => 
   array (
@@ -263,23 +268,6 @@ $xpdo_meta_map['Orgs']= array (
       'null' => true,
       'default' => 0.0,
     ),
-    'manager_id' => 
-    array (
-      'dbtype' => 'int',
-      'precision' => '10',
-      'phptype' => 'integer',
-      'attributes' => 'unsigned',
-      'null' => true,
-      'default' => 0,
-    ),
-    'active' => 
-    array (
-      'dbtype' => 'tinyint',
-      'precision' => '1',
-      'phptype' => 'boolean',
-      'null' => true,
-      'default' => 1,
-    ),
     'ext_int_1' => 
     array (
       'dbtype' => 'int',
@@ -436,12 +424,66 @@ $xpdo_meta_map['Orgs']= array (
       'null' => true,
       'default' => 0.0,
     ),
+    'active' => 
+    array (
+      'dbtype' => 'tinyint',
+      'precision' => '1',
+      'phptype' => 'boolean',
+      'null' => true,
+      'default' => 1,
+    ),
+    'buyer' => 
+    array (
+      'dbtype' => 'tinyint',
+      'precision' => '1',
+      'phptype' => 'boolean',
+      'null' => true,
+      'default' => 1,
+      'title' => 'Покупатель',
+    ),
+    'supplier' => 
+    array (
+      'dbtype' => 'tinyint',
+      'precision' => '1',
+      'phptype' => 'boolean',
+      'null' => true,
+      'default' => 0,
+      'title' => 'Поставщик',
+    ),
+    'op' => 
+    array (
+      'dbtype' => 'tinyint',
+      'precision' => '1',
+      'phptype' => 'boolean',
+      'null' => true,
+      'default' => 0,
+      'title' => 'Отдел продаж',
+    ),
+    'manager_id' => 
+    array (
+      'dbtype' => 'int',
+      'precision' => '10',
+      'phptype' => 'integer',
+      'attributes' => 'unsigned',
+      'null' => true,
+      'default' => 0,
+      'title' => 'Менеджер Отдел сопровождения',
+    ),
     'op_manager_id' => 
     array (
       'dbtype' => 'int',
       'precision' => '10',
       'phptype' => 'integer',
       'null' => true,
+      'title' => 'Менеджер Отдел продаж',
+    ),
+    'supplier_manager_id' => 
+    array (
+      'dbtype' => 'int',
+      'precision' => '10',
+      'phptype' => 'integer',
+      'null' => true,
+      'title' => 'Менеджер Отдел снабжения',
     ),
     'op_date_start' => 
     array (
@@ -482,6 +524,16 @@ $xpdo_meta_map['Orgs']= array (
       'dbtype' => 'date',
       'phptype' => 'date',
       'null' => true,
+    ),
+    'barcode_template_id' => 
+    array (
+      'dbtype' => 'int',
+      'precision' => '10',
+      'phptype' => 'integer',
+      'attributes' => 'unsigned',
+      'null' => true,
+      'default' => 1,
+      'title' => 'Шаблон этикеток',
     ),
   ),
   'indexes' => 
@@ -566,12 +618,36 @@ $xpdo_meta_map['Orgs']= array (
         ),
       ),
     ),
+    'barcode_template_id' => 
+    array (
+      'alias' => 'barcode_template_id',
+      'primary' => false,
+      'unique' => false,
+      'type' => 'BTREE',
+      'columns' => 
+      array (
+        'barcode_template_id' => 
+        array (
+          'length' => '',
+          'collation' => 'A',
+          'null' => false,
+        ),
+      ),
+    ),
   ),
   'composites' => 
   array (
     'OrgsUsersLink' => 
     array (
       'class' => 'OrgsUsersLink',
+      'local' => 'id',
+      'foreign' => 'org_id',
+      'cardinality' => 'many',
+      'owner' => 'local',
+    ),
+    'OrgsContactLink' => 
+    array (
+      'class' => 'OrgsContactLink',
       'local' => 'id',
       'foreign' => 'org_id',
       'cardinality' => 'many',
